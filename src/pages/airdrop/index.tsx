@@ -5,7 +5,7 @@ import theme from "../../ui/styles/Theme.module.scss";
 import { GutterBox } from "../../ui/gutter-box";
 import { getModeClassName } from "../../ui/utils/get-theme-class-name";
 import { useWeb3React } from "@web3-react/core";
-import { TX_SCANERS, NAME } from "../../const/const";
+import { TX_SCANERS, NAME, VESTING_CONTRACT_ADDRESS } from "../../const/const";
 import { useWeb3Provider } from "../../web3/web3";
 import { useVestingContract } from "../../web3/contract";
 import { Contract } from "web3-eth-contract";
@@ -68,7 +68,7 @@ export const Airdrop: FC<TokensType> = () => {
 
 	const provider = useWeb3Provider();
 	const { active, chainId, account } = useWeb3React();
-	const contract = useVestingContract(provider, chainId);
+	const contract = useVestingContract(provider, location.search.replace('?', ''));
 
 	const updateData = useCallback(async () => {
 		if (account) {
