@@ -3,7 +3,7 @@ export const walletConversion = (wallet: string): string => {
 		return wallet;
 	}
 	const newWallet = wallet.split("");
-	const firstPart = newWallet.slice(0, 15).join("");
-	const lastPart = newWallet.slice(newWallet.length - 4, newWallet.length).join("");
+	const firstPart = newWallet.slice(0, 10).join("");
+	const lastPart = newWallet.slice(newWallet.length - 8, newWallet.length).join("");
 	return firstPart + "..." + lastPart;
 };

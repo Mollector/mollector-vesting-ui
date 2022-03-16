@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
-import styles from "./Vesting.module.scss";
+import styles from "./Airdrop.module.scss";
 import theme from "../../ui/styles/Theme.module.scss";
 import { GutterBox } from "../../ui/gutter-box";
 import { getModeClassName } from "../../ui/utils/get-theme-class-name";
@@ -43,7 +43,7 @@ const fetchInformation = async (contract: Contract, address: string) => {
 	};
 };
 
-export const Vesting: FC<TokensType> = () => {
+export const Airdrop: FC<TokensType> = () => {
 	const [amount, setAmount] = useState<{
 		releaseAmount: number;
 		lockedAmount: number;
