@@ -7,7 +7,7 @@ const SELECT_WEB3_PROVIDER_KEY = "SELECT_WEB3_PROVIDER_KEY";
 export const useWalletConnector = () => {
 	const { activate } = useWeb3React();
 
-	return useCallback((name: KNOWN_WALLET_KEY) => {
+	return useCallback((name: any) => {
 		activate(KNOWN_WALLETS[name]()).then(
 			() => {
 				// store user choice
@@ -16,7 +16,7 @@ export const useWalletConnector = () => {
 			(err) => {
 				console.error(err);
 				// reset failed attempt
-				window.localStorage.setItem(SELECT_WEB3_PROVIDER_KEY, null);
+				window.localStorage.setItem(SELECT_WEB3_PROVIDER_KEY, '');
 				throw err;
 			}
 		);

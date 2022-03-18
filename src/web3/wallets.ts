@@ -13,9 +13,11 @@ const walletConnectFactory = () =>
 		bridge: "https://bridge.walletconnect.org",
 		qrcode: true,
 		pollingInterval: PROVIDER_POLLING_INTERVAL,
-	});
+	} as any);
 
-export const KNOWN_WALLETS = {
+export const KNOWN_WALLETS: {
+	[key: string]: any
+} = {
 	MetaMask: metaMaskFactory,
 	WalletConnect: walletConnectFactory,
 };

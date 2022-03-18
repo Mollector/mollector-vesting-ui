@@ -1,4 +1,3 @@
-import Head from "next/head";
 import classNames from "classnames";
 import { FC, ReactNode } from "react";
 
@@ -41,11 +40,11 @@ export const Layout: FC<LayoutType> = ({
 				className
 			)}
 		>
-			<Head>
+			{/* <Head>
 				<title>{title}</title>
 				<meta name="Description" content={description} />
 				<meta name="keywords" content={keywords} />
-			</Head>
+			</Head> */}
 			<Header className={styles.header} fixed={fixedHeader} />
 			<main className={styles.main}>
 				<Web3ProviderRoot>

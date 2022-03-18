@@ -6,7 +6,7 @@ import { MaybeWithClassName } from "../../../../helper/react/types";
 import { GutterBox } from "../../../../ui/gutter-box";
 import { Heading1 } from "../../../../ui/typography";
 import { TextColor } from "../../../../ui/text-color";
-import Link from "next/dist/client/link";
+import { Link } from "react-router-dom";
 type PromoType = {};
 
 export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
@@ -19,7 +19,7 @@ export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
 					to Revolutionize Gamble Industry.
 				</Heading1>
 
-				<Link href={"/vesting"}>
+				<Link to={"/vesting"}>
 					<button style={{
 						  textDecoration: 'none',
 						  fontSize: '16px',

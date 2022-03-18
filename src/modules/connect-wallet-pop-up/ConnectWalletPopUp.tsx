@@ -44,7 +44,7 @@ export const ConnectWalletPopUp: RC<{
 			animated={control.present}
 			visible={control.defined}
 			size="sm"
-			onClose={connecting ? undefined : close}
+			onClose={connecting ? () => {} : close}
 			withoutClose={withoutClose}
 			focusLock={false}
 		>

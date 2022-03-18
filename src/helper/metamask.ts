@@ -6,4 +6,5 @@ export const useEthereum = (): Ethereum => {
 	// @ts-ignore
 	return window.ethereum;
 };
-export const hasMetaMask = () => Boolean(useEthereum());
+// @ts-ignore
+export const hasMetaMask = () => Boolean(window.ethereum);

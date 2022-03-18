@@ -48,7 +48,7 @@ export const ColorLogo = (props: SVGAttributes<SVGElement>) => {
 	);
 };
 
-export const Logo = (props) => {
+export const Logo = (props: any) => {
 	return (
 		<svg viewBox="0 0 187 25" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
 			<g fill="currentColor">

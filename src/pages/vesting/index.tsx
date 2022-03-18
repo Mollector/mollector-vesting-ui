@@ -12,7 +12,8 @@ import { Contract } from "web3-eth-contract";
 import BN from "bn.js";
 import { Button, NavLink } from "../../ui/button";
 import { Box } from "../../modules/box";
-import { walletConversion } from "../../utils/convertWallet";
+import { walletConversion } from "../../utils/page/convertWallet";
+import { useNavigate } from "react-router-dom";
 
 
 type TokensType = {};
@@ -67,8 +68,13 @@ export const Vesting: FC<TokensType> = () => {
 	const [error, setError] = useState<string>("");
 
 	const provider = useWeb3Provider();
-	const { active, chainId, account } = useWeb3React();
+	const { active, chainId = 56, account } = useWeb3React();
 	const contract = useVestingContract(provider, VESTING_CONTRACT_ADDRESS[chainId]);
+	const history = useNavigate()
+
+	const onCancel = () => {
+		history('/')
+	}
 
 	const updateData = useCallback(async () => {
 		if (account) {
@@ -113,7 +119,7 @@ export const Vesting: FC<TokensType> = () => {
 				const claimResult = await contract.methods.release().send({ from: account });
 				setTxHash(claimResult.transactionHash);
 			}
-		} catch (ex) {
+		} catch (ex: any) {
 			console.error(ex);
 			setError(ex.message || ex.toString());
 		}
@@ -140,7 +146,7 @@ export const Vesting: FC<TokensType> = () => {
 										</span>
 									</p>
 
-									<p className={styles.text}>{walletConversion(account)}</p>
+									<p className={styles.text}>{walletConversion(account as any)}</p>
 									<div
 										style={{
 											display: "flex",
@@ -149,15 +155,15 @@ export const Vesting: FC<TokensType> = () => {
 											marginTop: 20,
 										}}
 									>
-										<NavLink
+										<Button
 											color="pink"
 											size="large"
 											variant="outlined"
-											href="/"
+											onClick={onCancel}
 											style={{ width: "46%" }}
 										>
 											Cancel
-										</NavLink>
+										</Button>
 										<Button
 											color="pink"
 											size="large"

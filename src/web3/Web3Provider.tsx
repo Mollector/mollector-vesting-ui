@@ -4,7 +4,7 @@ import { Web3Provider } from "@ethersproject/providers";
 import { ConnectWalletPopUp } from "../modules/connect-wallet-pop-up";
 import { useControlPopUp } from "../ui/pop-up-container";
 
-function getLibrary(provider) {
+function getLibrary(provider: any) {
 	const library = new Web3Provider(provider);
 	library.pollingInterval = 8000;
 	return library;
@@ -26,6 +26,6 @@ export const ConnectionModal = () => {
 	) : null;
 };
 
-export const Web3ProviderRoot = ({ children }) => (
+export const Web3ProviderRoot = ({ children }: any) => (
 	<Web3ReactProvider getLibrary={getLibrary}>{children}</Web3ReactProvider>
 );

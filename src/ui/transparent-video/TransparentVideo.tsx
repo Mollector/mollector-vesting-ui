@@ -101,8 +101,8 @@ export const TransparentVideo: FC<VideoType> = ({ className, onPlay, ...props })
 			video,
 			tmpCanvas,
 			targetCanvas,
-			tmpCanvas.getContext("2d"),
-			targetCanvas.getContext("2d"),
+			tmpCanvas.getContext("2d") as any,
+			targetCanvas.getContext("2d") as any,
 			pauseRef,
 			cancelRef
 		);
@@ -111,7 +111,7 @@ export const TransparentVideo: FC<VideoType> = ({ className, onPlay, ...props })
 		};
 	}, [onPlay]);
 
-	useIntersectionObserver((visible) => {
+	useIntersectionObserver((visible: any) => {
 		pauseRef.current = !visible;
 	}, canvasRef);
 

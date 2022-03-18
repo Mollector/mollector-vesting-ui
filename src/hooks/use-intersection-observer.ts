@@ -5,6 +5,7 @@ const withIntersectionObserver = (cb: (observer: typeof IntersectionObserver) =>
 	if ("IntersectionObserver" in window) {
 		Promise.resolve(IntersectionObserver).then(cb);
 	} else {
+		// @ts-ignore
 		import("intersection-observer").then(() => withIntersectionObserver(cb));
 	}
 };
@@ -17,7 +18,7 @@ interface Options {
 	deps?: any[];
 }
 
-export const useIntersectionObserver = (callback, nodeRef, options: Options = {}) => {
+export const useIntersectionObserver = (callback: any, nodeRef: any, options: Options = {}) => {
 	const [node, setNode] = useState(nodeRef?.current);
 
 	useEffect(() => {
@@ -27,7 +28,7 @@ export const useIntersectionObserver = (callback, nodeRef, options: Options = {}
 	}, [nodeRef?.current]);
 
 	useEffect(() => {
-		let observer;
+		let observer: any;
 		let canceled = false;
 		if (node) {
 			withIntersectionObserver((Observer) => {

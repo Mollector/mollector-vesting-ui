@@ -1,9 +1,9 @@
 import React, { CSSProperties, ComponentType, FC, ReactNode } from "react";
 import { EmptyObject, MaybeWithClassName, WithChildren } from "../../helper/react/types";
-import { default as Link } from "next/dist/client/link";
 import classNames from "classnames";
 
 import styles from "./Button.module.scss";
+import { Link } from "react-router-dom";
 
 type ButtonType = "button" | "submit" | "reset";
 type HTMLLinkType = "a";
@@ -105,7 +105,8 @@ export const NavLink: FC<CommonType & { href: string; as?: string }> = ({ href, 
 				{...rest}
 			/>
 		) : (
-			<Link href={href} as={as} passHref>
+			<Link to={href}>
+				{/* <Link href={href} as={as} passHref> */}
 				<ButtonComponent Component="a" role="link" {...rest} />
 			</Link>
 		)}

@@ -66,8 +66,8 @@ export const PopUpContainer: FC<ComponentType & MaybeWithClassName> = ({
 			<FocusOn
 				autoFocus
 				enabled={visible}
-				onEscapeKey={!withoutClose && onClose}
-				onClickOutside={!withoutClose && onClose}
+				onEscapeKey={!withoutClose && onClose as any}
+				onClickOutside={!withoutClose && onClose as any}
 				focusLock={focusLock}
 			>
 				<div data-autofocus-inside>
