@@ -12,7 +12,7 @@ import { Contract } from "web3-eth-contract";
 import BN from "bn.js";
 import { Button, NavLink } from "../../ui/button";
 import { Box } from "../../modules/box";
-import { walletConversion } from "../../utils/page/convertWallet";
+import { walletConversion } from "../../utils/convertWallet";
 import { useNavigate } from "react-router-dom";
 
 
