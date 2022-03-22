@@ -25,9 +25,9 @@ export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
 						  fontSize: '16px',
 						  fontWeight: 'bold',
 						  color: '#ffffff',
-						  background: '#ff1b81',
+						  background: 'rgb(56, 215, 213)',
 						  marginTop: '50px',
-						  border: '1px solid #ff1b81',
+						  border: '1px solid rgb(56, 215, 213)',
 						  padding: '15px 30px',
 						  borderRadius: '50px',
 						  cursor: 'pointer'

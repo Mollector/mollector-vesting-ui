@@ -15,8 +15,8 @@ export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed }
 	return (
 		<header className={classNames(styles.component, fixed && styles.fixed, className)}>
 			<div className={styles.wrapper}>
-				<NavLink className={styles.logo} href="/" icon={<ColorLogo />} variant="text">
-					Home
+				<NavLink className={styles.logo} href="/" variant="text">
+					<img src="https://mollector.com/images/menu.png" width={"100%"} />
 				</NavLink>
 			</div>
 		</header>
