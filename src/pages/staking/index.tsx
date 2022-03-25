@@ -137,6 +137,7 @@ const Staking: React.FC<StakingProps> = () => {
                             style={{ width: '20%' }}
                             onClick={onApproveToken1}
                             className={styles.button}
+                            isLoading={isLoadingToken1Approved as boolean}
                           >
                             Approve
                           </Button>
@@ -193,6 +194,7 @@ const Staking: React.FC<StakingProps> = () => {
                             style={{ width: '20%' }}
                             onClick={onApproveToken2}
                             className={styles.button}
+                            isLoading={isLoadingToken2Approved as boolean}
                           >
                             Approve
                           </Button>
