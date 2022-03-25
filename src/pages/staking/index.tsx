@@ -22,12 +22,14 @@ const Staking: React.FC<StakingProps> = () => {
   const { active, chainId = 56, account } = useWeb3React()
   const [token1Value, setToken1value] = useState<string>('')
   const [token2Value, setToken2Value] = useState<string>('')
+  const [isStakingToken1, setIsStakingToken1] = useState<boolean>(false)
+  const [isStakingToken2, setIsStakingToken2] = useState<boolean>(false)
   const provider = useWeb3Provider()
   const stakingContract = useStakingContract(provider, STAKING_CONTRACT_ADDRESS[chainId])
   const [token1Balance] = useTokenBalance(TOKEN1_STAKE[chainId].ADDRESS, account)
   const [token2Balance] = useTokenBalance(TOKEN2_STAKE[chainId].ADDRESS, account)
-  const [token1StakedBalance] = useTokenBalance(TOKEN1_STAKE[chainId].ADDRESS, TOKEN1_STAKE[chainId].ADDRESS)
-  const [token2StakedBalance] = useTokenBalance(TOKEN1_STAKE[chainId].ADDRESS, TOKEN2_STAKE[chainId].ADDRESS)
+  const [token1StakedBalance] = useTokenBalance(TOKEN1_STAKE[chainId].ADDRESS, STAKING_CONTRACT_ADDRESS[chainId])
+  const [token2StakedBalance] = useTokenBalance(TOKEN2_STAKE[chainId].ADDRESS, STAKING_CONTRACT_ADDRESS[chainId])
   const stakeToken1Contract = useBep20TokenContract(provider, TOKEN1_STAKE[chainId].ADDRESS)
   const stakeToken2Contract = useBep20TokenContract(provider, TOKEN2_STAKE[chainId].ADDRESS)
   const [token1StakeValue] = useStakeValue(TOKEN1_STAKE[chainId].ADDRESS, STAKING_CONTRACT_ADDRESS[chainId])
@@ -60,14 +62,27 @@ const Staking: React.FC<StakingProps> = () => {
     return TOKEN2_STAKE[chainId].SYMBOL
   }, [chainId])
 
-  const onHandleStake = async (): Promise<void> => {
+  const onHandleStake = async (option: number): Promise<void> => {
     try {
-      const stakeAmount = getDecimalAmount(Number(token1Value)).toString()
-      console.log(stakeAmount, 'AMOUNT ?')
-      const response = await stakingContract.methods
-        .lock(TOKEN1_STAKE[chainId].ADDRESS, stakeAmount)
-        .send({ from: account })
-    } catch (error) {}
+      if (option === 1) {
+        setIsStakingToken1(true)
+        const stakeAmount = getDecimalAmount(Number(token1Value)).toString()
+        const response = await stakingContract.methods
+          .lock(TOKEN1_STAKE[chainId].ADDRESS, stakeAmount)
+          .send({ from: account })
+        setIsStakingToken1(false)
+      } else {
+        setIsStakingToken2(true)
+        const stakeAmount = getDecimalAmount(Number(token2Value)).toString()
+        const response = await stakingContract.methods
+          .lock(TOKEN2_STAKE[chainId].ADDRESS, stakeAmount)
+          .send({ from: account })
+        setIsStakingToken2(false)
+      }
+    } catch (error) {
+      setIsStakingToken1(false)
+      setIsStakingToken2(false)
+    }
   }
 
   return (
@@ -126,7 +141,8 @@ const Staking: React.FC<StakingProps> = () => {
                             size="large"
                             variant="contained"
                             style={{ width: '20%' }}
-                            onClick={onHandleStake}
+                            isLoading={isStakingToken1}
+                            onClick={() => onHandleStake(1)}
                             className={styles.button}
                           >
                             Stake
@@ -183,7 +199,8 @@ const Staking: React.FC<StakingProps> = () => {
                             size="large"
                             variant="contained"
                             style={{ width: '20%' }}
-                            onClick={onHandleStake}
+                            isLoading={isStakingToken2}
+                            onClick={() => onHandleStake(2)}
                             className={styles.button}
                           >
                             Stake
