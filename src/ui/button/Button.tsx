@@ -10,6 +10,7 @@ type HTMLLinkType = "a";
 
 export type ButtonComponentType = {
 	disabled?: boolean;
+	isLoading?: boolean;
 	style?: CSSProperties;
 	activeClassName?: string;
 
@@ -51,6 +52,7 @@ export const ButtonComponent: FC<ButtonProps<EmptyObject> & MaybeWithClassName &
 	iconAfter,
 	iconBefore,
 	icon,
+	isLoading,
 	variant,
 	color,
 	size,
