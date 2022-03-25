@@ -1,9 +1,10 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { Layout } from "./layout";
-import { Home } from "./pages/home";
-import { Vesting } from "./pages/vesting";
-import { Airdrop } from "./pages/airdrop";
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { Layout } from './layout'
+import Home from './pages/home'
+import Vesting from './pages/vesting'
+import Staking from './pages/staking'
+import Airdrop from './pages/airdrop'
 
 function App() {
   return (
@@ -11,10 +12,7 @@ function App() {
       <Route
         path="/"
         element={
-          <Layout
-            title="MaxBet | PigFarmTeam"
-            description="The Decentralized House, Revolutionize Gamble Industry."
-          >
+          <Layout title="MaxBet | PigFarmTeam" description="The Decentralized House, Revolutionize Gamble Industry.">
             <Home />
           </Layout>
         }
@@ -34,6 +32,21 @@ function App() {
           </Layout>
         }
       />
+      <Route
+        path="staking"
+        element={
+          <Layout
+            title="MaxBet | PigFarmTeam"
+            description="The Decentralized House to Revolutionize Gamble Industry."
+            mode="transparent"
+            fixedHeader={true}
+            withDecoration={true}
+            web3={true}
+          >
+            <Staking />
+          </Layout>
+        }
+      />
       {/* <Route
         path="airdrop"
         element={
@@ -50,7 +63,7 @@ function App() {
         }
       /> */}
     </Routes>
-  );
+  )
 }
 
-export default App;
+export default App

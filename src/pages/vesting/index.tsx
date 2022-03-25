@@ -44,7 +44,7 @@ const fetchInformation = async (contract: Contract, address: string) => {
 	};
 };
 
-export const Vesting: FC<TokensType> = () => {
+const Vesting: FC<TokensType> = () => {
 	const [amount, setAmount] = useState<{
 		releaseAmount: number;
 		lockedAmount: number;
@@ -213,3 +213,5 @@ export const Vesting: FC<TokensType> = () => {
 		</>
 	);
 };
+
+export default Vesting
