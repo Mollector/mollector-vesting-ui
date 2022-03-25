@@ -24,8 +24,10 @@ const Staking: React.FC<StakingProps> = () => {
   const [token2Value, setToken2Value] = useState<string>('')
   const provider = useWeb3Provider()
   const stakingContract = useStakingContract(provider, STAKING_CONTRACT_ADDRESS[chainId])
-  const [token1Balance] = useTokenBalance(TOKEN1_STAKE[chainId].ADDRESS)
-  const [token2Balance] = useTokenBalance(TOKEN2_STAKE[chainId].ADDRESS)
+  const [token1Balance] = useTokenBalance(TOKEN1_STAKE[chainId].ADDRESS, account)
+  const [token2Balance] = useTokenBalance(TOKEN2_STAKE[chainId].ADDRESS, account)
+  const [token1StakedBalance] = useTokenBalance(TOKEN1_STAKE[chainId].ADDRESS, TOKEN1_STAKE[chainId].ADDRESS)
+  const [token2StakedBalance] = useTokenBalance(TOKEN1_STAKE[chainId].ADDRESS, TOKEN2_STAKE[chainId].ADDRESS)
   const stakeToken1Contract = useBep20TokenContract(provider, TOKEN1_STAKE[chainId].ADDRESS)
   const stakeToken2Contract = useBep20TokenContract(provider, TOKEN2_STAKE[chainId].ADDRESS)
   const [token1StakeValue] = useStakeValue(TOKEN1_STAKE[chainId].ADDRESS, STAKING_CONTRACT_ADDRESS[chainId])
@@ -97,7 +99,7 @@ const Staking: React.FC<StakingProps> = () => {
                           {token1StakeValue} {TOKEN1_SYMBOL}
                         </span>
                       </p>
-                      <p className={styles.text}>Total: 100000000 {TOKEN1_SYMBOL}</p>
+                      <p className={styles.text}>Total: {token1StakedBalance} {TOKEN1_SYMBOL}</p>
                       <div className={styles.inputContainer}>
                         <div
                           style={{
@@ -155,7 +157,7 @@ const Staking: React.FC<StakingProps> = () => {
                           {token2StakeValue} {TOKEN2_SYMBOL}
                         </span>
                       </p>
-                      <p className={styles.text}>Total: 100000000 {TOKEN2_SYMBOL}</p>
+                      <p className={styles.text}>Total: {token2StakedBalance} {TOKEN2_SYMBOL}</p>
                       <div className={styles.inputContainer}>
                         <div
                           style={{
