@@ -36,7 +36,7 @@ function App() {
           </Layout>
         }
       />
-      <Route
+      {/* <Route
         path="airdrop"
         element={
           <Layout
@@ -50,7 +50,7 @@ function App() {
             <Airdrop />
           </Layout>
         }
-      />
+      /> */}
     </Routes>
   );
 }
