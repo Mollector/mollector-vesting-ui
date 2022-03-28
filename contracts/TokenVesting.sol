@@ -258,8 +258,6 @@ contract TokenVesting is Ownable {
         _release(msg.sender);
     }
 
-
-
     function totalBeneficiaries() public view returns (uint) {
         return beneficiaries.length;
     }
