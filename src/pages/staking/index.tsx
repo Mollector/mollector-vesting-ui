@@ -222,6 +222,7 @@ const Staking: React.FC<StakingProps> = () => {
                           color="pink"
                           size="large"
                           variant="contained"
+                          disabled={token1StakeValue === 0}
                           style={{
                             backgroundColor: '#D17627',
                           }}
@@ -297,6 +298,7 @@ const Staking: React.FC<StakingProps> = () => {
                           color="pink"
                           size="large"
                           variant="contained"
+                          disabled={token2StakeValue === 0}
                           style={{
                             backgroundColor: '#D17627',
                           }}
