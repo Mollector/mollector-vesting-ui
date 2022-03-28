@@ -103,6 +103,14 @@ const Staking: React.FC<StakingProps> = () => {
     }
   }
 
+  const onMaxToken1 = () => {
+    setToken1Value(token1Balance.toString())
+  }
+
+  const onMaxToken2 = () => {
+    setToken2Value(token2Balance.toString())
+  }
+
   return (
     <>
       <section className={styles.component}>
@@ -163,7 +171,7 @@ const Staking: React.FC<StakingProps> = () => {
                             <div className={classNames({ [styles.blur]: !token1Value })}>
                               {token1Value || 0} {TOKEN1_SYMBOL}
                             </div>
-                            <div>Balance: {token1Balance}</div>
+                            <span className={styles.maxBtn} onClick={onMaxToken1}>Max</span>
                           </div>
                         </div>
                         {isToken1Approved ? (
@@ -234,7 +242,7 @@ const Staking: React.FC<StakingProps> = () => {
                             <div className={classNames({ [styles.blur]: !token2Value })}>
                               {token2Value || 0} {TOKEN2_SYMBOL}
                             </div>
-                            <div>Balance: {token2Balance}</div>
+                            <span className={styles.maxBtn} onClick={onMaxToken2}>Max</span>
                           </div>
                         </div>
                         {isToken2Approved ? (
