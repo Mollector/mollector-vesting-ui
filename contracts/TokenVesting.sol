@@ -32,20 +32,83 @@ contract TokenVesting is Ownable {
     address[] public beneficiaries;
 
     uint public withdrawAt = 0;
+    uint public lockedSetting = false;
 
-    constructor(
-        IERC20 _token,
-        uint256 _tge,
-        uint256 _cliff,
-        uint256 _duration
-    ) {
-        _init(_token, _tge, _cliff, _duration);
+
+    /**
+    TGE Public: 1648630800
+    TGE Private: 1648717200
+     */
+
+    constructor(string poolFor) {
+        if (poolFor == "private_sale") {
+            _init(
+                address(0x06597FFaFD82E66ECeD9209d539032571ABD50d9),
+                1648717200, //tge private 9AM UTC 31/03/2022
+                90 days, // cliff
+                730 days // duration
+            );
+            // _addBeneficiary later
+        }
+        else if (poolFor == "advisor") {
+            _init(
+                address(0x06597FFaFD82E66ECeD9209d539032571ABD50d9),
+                1648717200, //tge private 9AM UTC 31/03/2022
+                365 days, // cliff
+                1460 days // duration
+            );
+            // _addBeneficiary later
+        }
+        else if (poolFor == "team") {
+            _init(
+                address(0x06597FFaFD82E66ECeD9209d539032571ABD50d9),
+                1648717200, //tge private 9AM UTC 31/03/2022
+                365 days, // cliff
+                1460 days // duration
+            );
+            _addBeneficiary(
+                msg.sender, 
+                0, // 0% at TGE of 200,000,000
+                200000000e18 // vestin in 1460 days
+            );
+        }
+        else if (poolFor == "marketing") {
+            _init(
+                address(0x06597FFaFD82E66ECeD9209d539032571ABD50d9),
+                1648717200, //tge private 9AM UTC 31/03/2022
+                90 days, // cliff
+                730 days // duration
+            );
+            _addBeneficiary(
+                msg.sender, 
+                1250000e18, // 5% at TGE of 250,000,000
+                250000000e18 - 1250000e18 // the rest vesting in 730 days
+            );
+        }
+        else if (poolFor == "ecosystem") {
+            _init(
+                address(0x06597FFaFD82E66ECeD9209d539032571ABD50d9),
+                1648717200, //tge private 9AM UTC 31/03/2022
+                0 days, // cliff
+                730 days // duration
+            );
+            _addBeneficiary(
+                msg.sender, 
+                1250000e18, // 5% at TGE of 250,000,000
+                250000000e18 - 1250000e18 // the rest vesting in 730 days
+            );
+        }
+    }
+
+    function lockSetting() public onlyOwner {
+        lockedSetting = true;
     }
 
     function _init(IERC20 _token,
         uint256 _tge,
         uint256 _cliff,
         uint256 _duration) private {
+        require(!lockedSetting, "Cannot update");
         require(
             _cliff <= _duration,
             "Cliff has to be lower or equal to duration"
@@ -88,12 +151,12 @@ contract TokenVesting is Ownable {
         return total;
     }
 
-    // Lock 7 days 
+    // time lock 2 days before withdraw
     function requestWithdraw() public onlyOwner {
-        withdrawAt = block.timestamp + 7 days; // TODO: need check time
+        withdrawAt = block.timestamp + 2 days; // TODO: need check time
     }
     
-    // need request withdraw and wait 7 days
+    // need request withdraw and wait 2 days
     // only use when transfer wrong token or emergency
     function withdraw(address _token, address payable _to) external onlyOwner {
         require(withdrawAt > 0 && withdrawAt < block.timestamp, "Cannot withdraw");
@@ -109,10 +172,10 @@ contract TokenVesting is Ownable {
         withdrawAt = 0;
     }
 
-    function addBeneficiary(address _beneficiary, uint256 _tgeUnlockAmount, uint256 _vestingAmount)
-        public
-        onlyOwner
+    function _addBeneficiary(address _beneficiary, uint256 _tgeUnlockAmount, uint256 _vestingAmount)
+        private
     {
+        require(!lockedSetting, "Cannot update");
         require(
             _beneficiary != address(0),
             "The beneficiary's address cannot be 0"
@@ -125,6 +188,13 @@ contract TokenVesting is Ownable {
 
         shares[_beneficiary] = shares[_beneficiary].add(_vestingAmount);
         tgeUnlock[_beneficiary] = tgeUnlock[_beneficiary].add(_tgeUnlockAmount);
+    }
+
+    function addBeneficiary(address _beneficiary, uint256 _tgeUnlockAmount, uint256 _vestingAmount)
+        public
+        onlyOwner
+    {
+        _addBeneficiary(_beneficiary, _tgeUnlockAmount, _vestingAmount);
     }
 
     function addMultiBeneficiaries(address[] memory _beneficiaries, uint256[] memory _tgeUnlockAmounts, uint256[] memory _vestingAmounts)
