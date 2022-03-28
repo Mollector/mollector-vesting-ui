@@ -23,6 +23,8 @@ const Staking: React.FC<StakingProps> = () => {
   const { active, chainId = 56, account } = useWeb3React()
   const [token1Value, setToken1Value] = useState<string>('')
   const [token2Value, setToken2Value] = useState<string>('')
+  const [input1Error, setInput1Error] = useState<string>('')
+  const [input2Error, setInput2Error] = useState<string>('')
   const [isStakingToken1, setIsStakingToken1] = useState<boolean>(false)
   const [isStakingToken2, setIsStakingToken2] = useState<boolean>(false)
   const [isWithdrawToken1, setIsWithdrawToken1] = useState<boolean>(false)
@@ -68,15 +70,27 @@ const Staking: React.FC<StakingProps> = () => {
   const onHandleWithdraw = async (option: Number): Promise<void> => {
     try {
       if (option === 1) {
-        // setIsWithdrawToken1(true)
-        // // const stakeAmount = getDecimalAmount(Number(token1Value)).toString()
-        // const response = await stakingContract.methods
-        //   .withdraw(TOKEN1_STAKE[chainId].ADDRESS, stakeAmount)
-        //   .send({ from: account })
-        //   setIsWithdrawToken1(false)
+        setIsWithdrawToken1(true)
+        const withdrawAmount = getDecimalAmount(Number(token1StakeValue)).toString()
+        const response = await stakingContract.methods
+          .withdraw(TOKEN1_STAKE[chainId].ADDRESS, withdrawAmount)
+          .send({ from: account })
+          setIsWithdrawToken1(false)
       } else {
+        setIsWithdrawToken2(true)
+        const withdrawAmount = getDecimalAmount(Number(token2StakeValue)).toString()
+        const response = await stakingContract.methods
+          .withdraw(TOKEN2_STAKE[chainId].ADDRESS, withdrawAmount)
+          .send({ from: account })
+          setIsWithdrawToken2(false)
       }
-    } catch (error) {}
+    } catch (error) {
+      setIsWithdrawToken1(false)
+      setIsWithdrawToken2(false)
+      toast.error('Fail to withdraw', {
+        hideProgressBar: true,
+      })
+    }
   }
 
   const onHandleStake = async (option: number): Promise<void> => {
@@ -100,13 +114,13 @@ const Staking: React.FC<StakingProps> = () => {
       }
 
       toast.success('Successfully staked', {
-        hideProgressBar: true
+        hideProgressBar: true,
       })
     } catch (error) {
       setIsStakingToken1(false)
       setIsStakingToken2(false)
-      toast.success('Fail to stake', {
-        hideProgressBar: true
+      toast.error('Fail to stake', {
+        hideProgressBar: true,
       })
     }
   }
@@ -159,7 +173,11 @@ const Staking: React.FC<StakingProps> = () => {
                           }}
                         >
                           <input
-                            className={classNames(styles.input, { [styles.empty]: `${token1Value}` })}
+                            className={classNames({
+                              [styles.input]: true,
+                              [styles.empty]: `${token1Value}`,
+                              [styles.inputError]: `${input1Error}`,
+                            })}
                             type="number"
                             value={token1Value}
                             onChange={onHandleChangeToken1Value}
@@ -180,6 +198,7 @@ const Staking: React.FC<StakingProps> = () => {
                           <Button
                             color="pink"
                             size="large"
+                            disabled={!token1Value}
                             variant="contained"
                             style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             isLoading={isStakingToken1}
@@ -262,6 +281,7 @@ const Staking: React.FC<StakingProps> = () => {
                             color="pink"
                             size="large"
                             variant="contained"
+                            disabled={!token2Value}
                             style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             isLoading={isStakingToken2}
                             onClick={() => onHandleStake(2)}
