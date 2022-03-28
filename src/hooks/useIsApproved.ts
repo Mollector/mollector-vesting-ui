@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { Contract } from "web3-eth-contract";
+import { Contract } from 'web3-eth-contract'
 import BigNumber from 'bignumber.js'
 
 /**
  * Check if user approve to spend the pay token amount or not
  * If the pay token is native token - we can skip this step
  */
-const useIsApproved = (tokenContract: Contract, spenderAddress: string) => {
+const useIsApproved = (
+  tokenContract: Contract,
+  spenderAddress: string,
+): [approveStatus: boolean, refetchingStatusFunction: Function, isLoading: boolean] => {
   const [isApproved, setIsApproved] = useState(false)
   const [isLoadingApproved, setIsLoadingApproved] = useState(false)
   const { account } = useWeb3React()

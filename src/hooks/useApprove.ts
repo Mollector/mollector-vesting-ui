@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import { Contract } from 'web3-eth-contract'
 import { useWeb3React } from '@web3-react/core'
 
-const useApprove = (tokenContract: Contract, spenderAddress: string) => {
+const useApprove = (tokenContract: Contract, spenderAddress: string): [approveFunction: Function, b: boolean] => {
   const { account } = useWeb3React()
   const [loading, setLoading] = useState(false)
 

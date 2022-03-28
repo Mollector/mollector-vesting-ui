@@ -54,16 +54,12 @@ const Staking: React.FC<StakingProps> = () => {
   const [onApproveToken2, isLoadingOnApproveToken2] = useApprove(stakeToken2Contract, STAKING_CONTRACT_ADDRESS[chainId])
 
   const onHandleApproveToken1 = async () => {
-    // @ts-ignore
     await onApproveToken1()
-    // @ts-ignore
     refetchStatusToken1()
   }
 
   const onHandleApproveToken2 = async () => {
-    // @ts-ignore
     await onApproveToken2()
-    // @ts-ignore
     refetchStatusToken2()
   }
 
@@ -180,7 +176,7 @@ const Staking: React.FC<StakingProps> = () => {
                         </span>
                       </p>
                       <p className={styles.text}>
-                        Total: {token1StakedBalance} {TOKEN1_SYMBOL}
+                        Total lock value: {token1StakedBalance} {TOKEN1_SYMBOL}
                       </p>
 
                       <div className={styles.inputContainer}>
@@ -246,7 +242,7 @@ const Staking: React.FC<StakingProps> = () => {
                           onClick={() => onHandleWithdraw(1)}
                           className={styles.button}
                         >
-                          Withdraw
+                          Withdraw all
                         </Button>
                       </div>
                     </Box>
@@ -262,7 +258,7 @@ const Staking: React.FC<StakingProps> = () => {
                         </span>
                       </p>
                       <p className={styles.text}>
-                        Total: {token2StakedBalance} {TOKEN2_SYMBOL}
+                        Total lock value: {token2StakedBalance} {TOKEN2_SYMBOL}
                       </p>
                       <div className={styles.inputContainer}>
                         <div
@@ -322,7 +318,7 @@ const Staking: React.FC<StakingProps> = () => {
                           onClick={() => onHandleWithdraw(2)}
                           className={styles.button}
                         >
-                          Withdraw
+                          Withdraw all
                         </Button>
                       </div>
                     </Box>
