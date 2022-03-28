@@ -143,21 +143,11 @@ const Staking: React.FC<StakingProps> = () => {
                       <p className={styles.text}>
                         Total: {token1StakedBalance} {TOKEN1_SYMBOL}
                       </p>
-                      <Button
-                        color="pink"
-                        size="large"
-                        variant="contained"
-                        style={{ width: '20%' }}
-                        isLoading={isWithdrawToken1}
-                        onClick={() => onHandleWithdraw(1)}
-                        className={styles.button}
-                      >
-                        Withdraw
-                      </Button>
+
                       <div className={styles.inputContainer}>
                         <div
                           style={{
-                            width: '60%',
+                            width: '100%',
                           }}
                         >
                           <input
@@ -171,15 +161,19 @@ const Staking: React.FC<StakingProps> = () => {
                             <div className={classNames({ [styles.blur]: !token1Value })}>
                               {token1Value || 0} {TOKEN1_SYMBOL}
                             </div>
-                            <span className={styles.maxBtn} onClick={onMaxToken1}>Max</span>
+                            <span className={styles.maxBtn} onClick={onMaxToken1}>
+                              Max
+                            </span>
                           </div>
                         </div>
+                      </div>
+                      <div className={styles.wrapperBtn}>
                         {isToken1Approved ? (
                           <Button
                             color="pink"
                             size="large"
                             variant="contained"
-                            style={{ width: '20%' }}
+                            style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             isLoading={isStakingToken1}
                             onClick={() => onHandleStake(1)}
                             className={styles.button}
@@ -191,7 +185,7 @@ const Staking: React.FC<StakingProps> = () => {
                             color="pink"
                             size="large"
                             variant="contained"
-                            style={{ width: '20%' }}
+                            style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             onClick={onApproveToken1}
                             className={styles.button}
                             isLoading={isLoadingToken1Approved as boolean}
@@ -199,6 +193,23 @@ const Staking: React.FC<StakingProps> = () => {
                             Approve
                           </Button>
                         )}
+                        <Button
+                          color="pink"
+                          size="large"
+                          variant="contained"
+                          style={{
+                            width: '30%',
+                            minHeight: '50px',
+                            height: '50px',
+                            marginLeft: '10px',
+                            backgroundColor: '#D17627',
+                          }}
+                          isLoading={isWithdrawToken1}
+                          onClick={() => onHandleWithdraw(1)}
+                          className={styles.button}
+                        >
+                          Withdraw
+                        </Button>
                       </div>
                     </Box>
                     <Box className={styles.info}></Box>
@@ -215,21 +226,10 @@ const Staking: React.FC<StakingProps> = () => {
                       <p className={styles.text}>
                         Total: {token2StakedBalance} {TOKEN2_SYMBOL}
                       </p>
-                      <Button
-                        color="pink"
-                        size="large"
-                        variant="contained"
-                        style={{ width: '20%' }}
-                        isLoading={isWithdrawToken2}
-                        onClick={() => onHandleWithdraw(2)}
-                        className={styles.button}
-                      >
-                        Withdraw
-                      </Button>
                       <div className={styles.inputContainer}>
                         <div
                           style={{
-                            width: '60%',
+                            width: '100%',
                           }}
                         >
                           <input
@@ -242,15 +242,19 @@ const Staking: React.FC<StakingProps> = () => {
                             <div className={classNames({ [styles.blur]: !token2Value })}>
                               {token2Value || 0} {TOKEN2_SYMBOL}
                             </div>
-                            <span className={styles.maxBtn} onClick={onMaxToken2}>Max</span>
+                            <span className={styles.maxBtn} onClick={onMaxToken2}>
+                              Max
+                            </span>
                           </div>
                         </div>
+                      </div>
+                      <div className={styles.wrapperBtn}>
                         {isToken2Approved ? (
                           <Button
                             color="pink"
                             size="large"
                             variant="contained"
-                            style={{ width: '20%' }}
+                            style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             isLoading={isStakingToken2}
                             onClick={() => onHandleStake(2)}
                             className={styles.button}
@@ -262,7 +266,7 @@ const Staking: React.FC<StakingProps> = () => {
                             color="pink"
                             size="large"
                             variant="contained"
-                            style={{ width: '20%' }}
+                            style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             onClick={onApproveToken2}
                             className={styles.button}
                             isLoading={isLoadingToken2Approved as boolean}
@@ -270,6 +274,23 @@ const Staking: React.FC<StakingProps> = () => {
                             Approve
                           </Button>
                         )}
+                        <Button
+                          color="pink"
+                          size="large"
+                          variant="contained"
+                          style={{
+                            width: '30%',
+                            minHeight: '50px',
+                            height: '50px',
+                            marginLeft: '10px',
+                            backgroundColor: '#D17627',
+                          }}
+                          isLoading={isWithdrawToken2}
+                          onClick={() => onHandleWithdraw(2)}
+                          className={styles.button}
+                        >
+                          Withdraw
+                        </Button>
                       </div>
                     </Box>
                     <Box className={styles.info}></Box>
