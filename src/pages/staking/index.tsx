@@ -20,7 +20,7 @@ interface StakingProps {}
 
 const Staking: React.FC<StakingProps> = () => {
   const { active, chainId = 56, account } = useWeb3React()
-  const [token1Value, setToken1value] = useState<string>('')
+  const [token1Value, setToken1Value] = useState<string>('')
   const [token2Value, setToken2Value] = useState<string>('')
   const [isStakingToken1, setIsStakingToken1] = useState<boolean>(false)
   const [isStakingToken2, setIsStakingToken2] = useState<boolean>(false)
@@ -46,7 +46,7 @@ const Staking: React.FC<StakingProps> = () => {
   const { onApprove: onApproveToken2 } = useApprove(stakeToken2Contract, STAKING_CONTRACT_ADDRESS[chainId])
   const onHandleChangeToken1Value = (e: ChangeEvent<HTMLInputElement>): void => {
     const stakeValue = e.target.value
-    setToken1value(stakeValue)
+    setToken1Value(stakeValue)
   }
 
   const onHandleChangeToken2Value = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -83,6 +83,14 @@ const Staking: React.FC<StakingProps> = () => {
       setIsStakingToken1(false)
       setIsStakingToken2(false)
     }
+  }
+
+  const onMaxToken1 = () => {
+    setToken1Value(token1Balance.toString())
+  }
+
+  const onMaxToken2 = () => {
+    setToken2Value(token2Balance.toString())
   }
 
   return (
@@ -132,7 +140,7 @@ const Staking: React.FC<StakingProps> = () => {
                             <div className={classNames({ [styles.blur]: !token1Value })}>
                               {token1Value || 0} {TOKEN1_SYMBOL}
                             </div>
-                            <div>Balance: {token1Balance}</div>
+                            <span className={styles.maxBtn} onClick={onMaxToken1}>Max</span>
                           </div>
                         </div>
                         {isToken1Approved ? (
@@ -190,7 +198,7 @@ const Staking: React.FC<StakingProps> = () => {
                             <div className={classNames({ [styles.blur]: !token2Value })}>
                               {token2Value || 0} {TOKEN2_SYMBOL}
                             </div>
-                            <div>Balance: {token2Balance}</div>
+                            <span className={styles.maxBtn} onClick={onMaxToken2}>Max</span>
                           </div>
                         </div>
                         {isToken2Approved ? (
