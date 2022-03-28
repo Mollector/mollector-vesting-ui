@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useMemo, useState } from 'react'
+import { toast } from 'react-toastify'
 import classNames from 'classnames'
 import styles from './styles.module.scss'
 import theme from '../../ui/styles/Theme.module.scss'
@@ -97,9 +98,16 @@ const Staking: React.FC<StakingProps> = () => {
         setIsStakingToken2(false)
         setToken2Value('')
       }
+
+      toast.success('Successfully staked', {
+        hideProgressBar: true
+      })
     } catch (error) {
       setIsStakingToken1(false)
       setIsStakingToken2(false)
+      toast.success('Fail to stake', {
+        hideProgressBar: true
+      })
     }
   }
 

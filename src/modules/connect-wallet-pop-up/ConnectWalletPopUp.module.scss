@@ -53,12 +53,14 @@
   background-color: rgba(var(--bg), 1);
 
   transition-timing-function: linear;
-  transition-property: border-color;
+  transition-property: border-color transform;
   transition-duration: 250ms;
 
   &:hover,
   &:focus {
     border-color: rgba(var(--pink), 1);
+    transform: translateY(-1px);
+    cursor: pointer;
   }
 }
 

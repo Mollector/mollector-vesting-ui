@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import './index.css'
 import './theme/globals.scss'
+import 'react-toastify/dist/ReactToastify.css'
 import './theme/variables.scss'
 import App from './App'
 import { RefreshContextProvider } from './context/RefreshContext'
@@ -13,6 +15,7 @@ ReactDOM.render(
     <HashRouter>
       <RefreshContextProvider>
         <App />
+        <ToastContainer />
       </RefreshContextProvider>
     </HashRouter>
     ,
