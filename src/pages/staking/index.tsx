@@ -49,8 +49,24 @@ const Staking: React.FC<StakingProps> = () => {
     stakeToken2Contract,
     STAKING_CONTRACT_ADDRESS[chainId],
   )
-  const { onApprove: onApproveToken1 } = useApprove(stakeToken1Contract, STAKING_CONTRACT_ADDRESS[chainId])
-  const { onApprove: onApproveToken2 } = useApprove(stakeToken2Contract, STAKING_CONTRACT_ADDRESS[chainId])
+
+  const [onApproveToken1, isLoadingOnApproveToken1] = useApprove(stakeToken1Contract, STAKING_CONTRACT_ADDRESS[chainId])
+  const [onApproveToken2, isLoadingOnApproveToken2] = useApprove(stakeToken2Contract, STAKING_CONTRACT_ADDRESS[chainId])
+
+  const onHandleApproveToken1 = async () => {
+    // @ts-ignore
+    await onApproveToken1()
+    // @ts-ignore
+    refetchStatusToken1()
+  }
+
+  const onHandleApproveToken2 = async () => {
+    // @ts-ignore
+    await onApproveToken2()
+    // @ts-ignore
+    refetchStatusToken2()
+  }
+
   const onHandleChangeToken1Value = (e: ChangeEvent<HTMLInputElement>): void => {
     const stakeValue = e.target.value
     if (INPUT_REGEX.test(stakeValue) || stakeValue === '') {
@@ -211,9 +227,9 @@ const Staking: React.FC<StakingProps> = () => {
                             color="pink"
                             size="large"
                             variant="contained"
-                            onClick={onApproveToken1}
+                            onClick={onHandleApproveToken1}
                             className={styles.button}
-                            isLoading={isLoadingToken1Approved as boolean}
+                            isLoading={(isLoadingToken1Approved || isLoadingOnApproveToken1) as boolean}
                           >
                             Approve
                           </Button>
@@ -287,9 +303,9 @@ const Staking: React.FC<StakingProps> = () => {
                             color="pink"
                             size="large"
                             variant="contained"
-                            onClick={onApproveToken2}
+                            onClick={onHandleApproveToken2}
                             className={styles.button}
-                            isLoading={isLoadingToken2Approved as boolean}
+                            isLoading={(isLoadingToken2Approved || isLoadingOnApproveToken2) as boolean}
                           >
                             Approve
                           </Button>

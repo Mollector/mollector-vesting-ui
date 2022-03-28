@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Contract } from "web3-eth-contract";
 import BigNumber from 'bignumber.js'
-import useRefresh from './useRefresh';
 
 /**
  * Check if user approve to spend the pay token amount or not
