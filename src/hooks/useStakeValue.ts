@@ -4,10 +4,12 @@ import BigNumber from 'bignumber.js'
 import { useStakingContract } from '../web3/contract'
 import { useWeb3Provider } from '../web3/web3'
 import { getBalanceNumber } from '../utils/formatBalance'
+import useRefresh from './useRefresh'
 
 const useStakeValue = (tokenAddress: string, stakeContractAddress: string) => {
   const provider = useWeb3Provider()
   const { account } = useWeb3React()
+  const { slowRefresh } = useRefresh()
   const stakeContract = useStakingContract(provider, stakeContractAddress)
   const [balance, setBalance] = useState(0)
   const [countRefresh, setCountRefresh] = useState(0)
@@ -24,7 +26,7 @@ const useStakeValue = (tokenAddress: string, stakeContractAddress: string) => {
     if (provider && account) {
       getBalance()
     }
-  }, [account, stakeContract, countRefresh, provider])
+  }, [account, stakeContract, countRefresh, provider, slowRefresh])
 
   const reFetchingBalance = () => {
     setCountRefresh(countRefresh + 1)

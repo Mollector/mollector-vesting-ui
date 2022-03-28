@@ -3,11 +3,13 @@ import BigNumber from 'bignumber.js'
 import { useBep20TokenContract } from '../web3/contract'
 import { useWeb3Provider } from '../web3/web3'
 import { getBalanceNumber } from '../utils/formatBalance'
+import useRefresh from './useRefresh'
 
 type ADDRESS_TYPE = string | undefined | null
 
 const useTokenBalance = (tokenAddress: string, address: ADDRESS_TYPE) => {
   const provider = useWeb3Provider()
+  const { slowRefresh } = useRefresh()
   const stakeToken1Contract = useBep20TokenContract(provider, tokenAddress)
   const [balance, setBalance] = useState(0)
   const [countRefresh, setCountRefresh] = useState(0)
@@ -24,7 +26,7 @@ const useTokenBalance = (tokenAddress: string, address: ADDRESS_TYPE) => {
     if (provider && address) {
       getBalance()
     }
-  }, [address, stakeToken1Contract, countRefresh, provider])
+  }, [address, stakeToken1Contract, countRefresh, provider, slowRefresh])
 
   const reFetchingBalance = () => {
     setCountRefresh(countRefresh + 1)

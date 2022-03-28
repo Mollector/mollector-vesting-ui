@@ -20,10 +20,12 @@ interface StakingProps {}
 
 const Staking: React.FC<StakingProps> = () => {
   const { active, chainId = 56, account } = useWeb3React()
-  const [token1Value, setToken1value] = useState<string>('')
+  const [token1Value, setToken1Value] = useState<string>('')
   const [token2Value, setToken2Value] = useState<string>('')
   const [isStakingToken1, setIsStakingToken1] = useState<boolean>(false)
   const [isStakingToken2, setIsStakingToken2] = useState<boolean>(false)
+  const [isWithdrawToken1, setIsWithdrawToken1] = useState<boolean>(false)
+  const [isWithdrawToken2, setIsWithdrawToken2] = useState<boolean>(false)
   const provider = useWeb3Provider()
   const stakingContract = useStakingContract(provider, STAKING_CONTRACT_ADDRESS[chainId])
   const [token1Balance] = useTokenBalance(TOKEN1_STAKE[chainId].ADDRESS, account)
@@ -46,7 +48,7 @@ const Staking: React.FC<StakingProps> = () => {
   const { onApprove: onApproveToken2 } = useApprove(stakeToken2Contract, STAKING_CONTRACT_ADDRESS[chainId])
   const onHandleChangeToken1Value = (e: ChangeEvent<HTMLInputElement>): void => {
     const stakeValue = e.target.value
-    setToken1value(stakeValue)
+    setToken1Value(stakeValue)
   }
 
   const onHandleChangeToken2Value = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -62,6 +64,20 @@ const Staking: React.FC<StakingProps> = () => {
     return TOKEN2_STAKE[chainId].SYMBOL
   }, [chainId])
 
+  const onHandleWithdraw = async (option: Number): Promise<void> => {
+    try {
+      if (option === 1) {
+        // setIsWithdrawToken1(true)
+        // // const stakeAmount = getDecimalAmount(Number(token1Value)).toString()
+        // const response = await stakingContract.methods
+        //   .withdraw(TOKEN1_STAKE[chainId].ADDRESS, stakeAmount)
+        //   .send({ from: account })
+        //   setIsWithdrawToken1(false)
+      } else {
+      }
+    } catch (error) {}
+  }
+
   const onHandleStake = async (option: number): Promise<void> => {
     try {
       if (option === 1) {
@@ -71,6 +87,7 @@ const Staking: React.FC<StakingProps> = () => {
           .lock(TOKEN1_STAKE[chainId].ADDRESS, stakeAmount)
           .send({ from: account })
         setIsStakingToken1(false)
+        setToken1Value('')
       } else {
         setIsStakingToken2(true)
         const stakeAmount = getDecimalAmount(Number(token2Value)).toString()
@@ -78,6 +95,7 @@ const Staking: React.FC<StakingProps> = () => {
           .lock(TOKEN2_STAKE[chainId].ADDRESS, stakeAmount)
           .send({ from: account })
         setIsStakingToken2(false)
+        setToken2Value('')
       }
     } catch (error) {
       setIsStakingToken1(false)
@@ -114,7 +132,20 @@ const Staking: React.FC<StakingProps> = () => {
                           {token1StakeValue} {TOKEN1_SYMBOL}
                         </span>
                       </p>
-                      <p className={styles.text}>Total: {token1StakedBalance} {TOKEN1_SYMBOL}</p>
+                      <p className={styles.text}>
+                        Total: {token1StakedBalance} {TOKEN1_SYMBOL}
+                      </p>
+                      <Button
+                        color="pink"
+                        size="large"
+                        variant="contained"
+                        style={{ width: '20%' }}
+                        isLoading={isWithdrawToken1}
+                        onClick={() => onHandleWithdraw(1)}
+                        className={styles.button}
+                      >
+                        Withdraw
+                      </Button>
                       <div className={styles.inputContainer}>
                         <div
                           style={{
@@ -173,7 +204,20 @@ const Staking: React.FC<StakingProps> = () => {
                           {token2StakeValue} {TOKEN2_SYMBOL}
                         </span>
                       </p>
-                      <p className={styles.text}>Total: {token2StakedBalance} {TOKEN2_SYMBOL}</p>
+                      <p className={styles.text}>
+                        Total: {token2StakedBalance} {TOKEN2_SYMBOL}
+                      </p>
+                      <Button
+                        color="pink"
+                        size="large"
+                        variant="contained"
+                        style={{ width: '20%' }}
+                        isLoading={isWithdrawToken2}
+                        onClick={() => onHandleWithdraw(2)}
+                        className={styles.button}
+                      >
+                        Withdraw
+                      </Button>
                       <div className={styles.inputContainer}>
                         <div
                           style={{
