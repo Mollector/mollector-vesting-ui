@@ -66,10 +66,6 @@ export const Layout: FC<LayoutType> = ({
           textAlign: "center",
           fontSize: 15,
           opacity: 0.7,
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
         }}
       >
         Powered by Mollector

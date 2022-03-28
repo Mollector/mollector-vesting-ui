@@ -6,6 +6,15 @@
   padding-bottom: 7.25rem;
 }
 
+.containerWrapper {
+  display: flex;
+  width: 100%;
+
+  @media only screen and (max-width: 1350px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .component::before {
   position: absolute;
@@ -31,6 +40,21 @@
   width: calc(50% - 15px);
   &:not(:last-child) {
     margin-right: 30px;
+  }
+
+  @media only screen and (max-width: 1350px) {
+    width: 70%;
+    margin-right: 0px !important;
+    &:not(:last-child) {
+      margin-bottom: 300px;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    &:not(:last-child) {
+      margin-bottom: 230px;
+    }
   }
 }
 
@@ -67,29 +91,38 @@
 
 .button {
   transition: all 0.3s ease-out;
+  width: 30%;
+  min-height: 50px;
+  height: 50px;
+  margin-left: 10px;
 
   &:active {
     transform: translateY(-2px);
+  }
+
+  @media only screen and (max-width: 576px) {
+    width: 40%;
   }
 }
 
 .title {
   margin: 0;
-
   font-size: 1.5rem;
   font-weight: var(--medium);
   text-align: center;
-
   color: rgba(var(--text), 1)
 }
 
 .title span {
   display: inline-block;
   margin-top: 2.25rem;
-
   font-family: "Work Sans", sans-serif;
   font-size: 3.25rem;
   font-weight: var(--semi-bold);
+
+  @media only screen and (max-width: 1024px) {
+    margin-top: 1rem;
+  }
 }
 
 .text {
@@ -129,6 +162,10 @@
   z-index: 0;
   right: 0px;
   width: 80%;
+
+  @media only screen and (max-width: 1024px) {
+    bottom: -160px;
+  }
 }
 
 .input {

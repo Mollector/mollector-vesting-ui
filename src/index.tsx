@@ -18,7 +18,6 @@ ReactDOM.render(
         <ToastContainer />
       </RefreshContextProvider>
     </HashRouter>
-    ,
   </React.StrictMode>,
   document.getElementById('root'),
 )

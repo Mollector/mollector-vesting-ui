@@ -19,6 +19,8 @@ import useApprove from '../../hooks/useApprove'
 
 interface StakingProps {}
 
+const INPUT_REGEX = /^[0-9\b]+$/
+
 const Staking: React.FC<StakingProps> = () => {
   const { active, chainId = 56, account } = useWeb3React()
   const [token1Value, setToken1Value] = useState<string>('')
@@ -51,12 +53,16 @@ const Staking: React.FC<StakingProps> = () => {
   const { onApprove: onApproveToken2 } = useApprove(stakeToken2Contract, STAKING_CONTRACT_ADDRESS[chainId])
   const onHandleChangeToken1Value = (e: ChangeEvent<HTMLInputElement>): void => {
     const stakeValue = e.target.value
-    setToken1Value(stakeValue)
+    if (INPUT_REGEX.test(stakeValue) || stakeValue === '') {
+      setToken1Value(stakeValue)
+    }
   }
 
   const onHandleChangeToken2Value = (e: ChangeEvent<HTMLInputElement>): void => {
     const stakeValue = e.target.value
-    setToken2Value(stakeValue)
+    if (INPUT_REGEX.test(stakeValue) || stakeValue === '') {
+      setToken2Value(stakeValue)
+    }
   }
 
   const TOKEN1_SYMBOL = useMemo(() => {
@@ -75,14 +81,14 @@ const Staking: React.FC<StakingProps> = () => {
         const response = await stakingContract.methods
           .withdraw(TOKEN1_STAKE[chainId].ADDRESS, withdrawAmount)
           .send({ from: account })
-          setIsWithdrawToken1(false)
+        setIsWithdrawToken1(false)
       } else {
         setIsWithdrawToken2(true)
         const withdrawAmount = getDecimalAmount(Number(token2StakeValue)).toString()
         const response = await stakingContract.methods
           .withdraw(TOKEN2_STAKE[chainId].ADDRESS, withdrawAmount)
           .send({ from: account })
-          setIsWithdrawToken2(false)
+        setIsWithdrawToken2(false)
       }
     } catch (error) {
       setIsWithdrawToken1(false)
@@ -142,12 +148,7 @@ const Staking: React.FC<StakingProps> = () => {
               <></>
             ) : (
               <div className={styles.container}>
-                <div
-                  style={{
-                    display: 'flex',
-                    width: '100%',
-                  }}
-                >
+                <div className={styles.containerWrapper}>
                   <div className={styles.boxWrapper}>
                     <Box
                       className={styles.miniBox}
@@ -178,7 +179,6 @@ const Staking: React.FC<StakingProps> = () => {
                               [styles.empty]: `${token1Value}`,
                               [styles.inputError]: `${input1Error}`,
                             })}
-                            type="number"
                             value={token1Value}
                             onChange={onHandleChangeToken1Value}
                           />
@@ -200,7 +200,6 @@ const Staking: React.FC<StakingProps> = () => {
                             size="large"
                             disabled={!token1Value}
                             variant="contained"
-                            style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             isLoading={isStakingToken1}
                             onClick={() => onHandleStake(1)}
                             className={styles.button}
@@ -212,7 +211,6 @@ const Staking: React.FC<StakingProps> = () => {
                             color="pink"
                             size="large"
                             variant="contained"
-                            style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             onClick={onApproveToken1}
                             className={styles.button}
                             isLoading={isLoadingToken1Approved as boolean}
@@ -225,10 +223,6 @@ const Staking: React.FC<StakingProps> = () => {
                           size="large"
                           variant="contained"
                           style={{
-                            width: '30%',
-                            minHeight: '50px',
-                            height: '50px',
-                            marginLeft: '10px',
                             backgroundColor: '#D17627',
                           }}
                           isLoading={isWithdrawToken1}
@@ -261,7 +255,6 @@ const Staking: React.FC<StakingProps> = () => {
                         >
                           <input
                             className={classNames(styles.input, { [styles.empty]: `${token2Value}` })}
-                            type="number"
                             value={token2Value}
                             onChange={onHandleChangeToken2Value}
                           />
@@ -282,7 +275,6 @@ const Staking: React.FC<StakingProps> = () => {
                             size="large"
                             variant="contained"
                             disabled={!token2Value}
-                            style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             isLoading={isStakingToken2}
                             onClick={() => onHandleStake(2)}
                             className={styles.button}
@@ -294,7 +286,6 @@ const Staking: React.FC<StakingProps> = () => {
                             color="pink"
                             size="large"
                             variant="contained"
-                            style={{ width: '30%', minHeight: '50px', height: '50px', marginRight: '10px' }}
                             onClick={onApproveToken2}
                             className={styles.button}
                             isLoading={isLoadingToken2Approved as boolean}
@@ -307,10 +298,6 @@ const Staking: React.FC<StakingProps> = () => {
                           size="large"
                           variant="contained"
                           style={{
-                            width: '30%',
-                            minHeight: '50px',
-                            height: '50px',
-                            marginLeft: '10px',
                             backgroundColor: '#D17627',
                           }}
                           isLoading={isWithdrawToken2}

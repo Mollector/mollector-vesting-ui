@@ -16,9 +16,8 @@
 
   cursor: pointer;
 
-  &:disabled {
-    cursor: initial;
-    pointer-events: none;
+  &:hover:disabled {
+    cursor: not-allowed;
   }
 }
 
