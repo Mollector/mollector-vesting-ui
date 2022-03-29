@@ -24,7 +24,7 @@ function App() {
         }
       />
       <Route
-        path="vesting"
+        path="/vesting/:address"
         element={
           <Layout
             title="MaxBet | PigFarmTeam"
@@ -39,7 +39,7 @@ function App() {
         }
       />
       <Route
-        path="staking"
+        path="/staking"
         element={
           <Layout
             title="MaxBet | PigFarmTeam"
