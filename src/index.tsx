@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import { Web3ReactProvider } from '@web3-react/core'
+import { Web3Provider } from '@ethersproject/providers'
 import './index.css'
 import './theme/globals.scss'
 import 'react-toastify/dist/ReactToastify.css'
@@ -10,13 +12,21 @@ import App from './App'
 import { RefreshContextProvider } from './context/RefreshContext'
 import reportWebVitals from './reportWebVitals'
 
+function getLibrary(provider: any) {
+  const library = new Web3Provider(provider)
+  library.pollingInterval = 8000
+  return library
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
-      <RefreshContextProvider>
-        <App />
-        <ToastContainer />
-      </RefreshContextProvider>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <RefreshContextProvider>
+          <App />
+          <ToastContainer />
+        </RefreshContextProvider>
+      </Web3ReactProvider>
     </HashRouter>
   </React.StrictMode>,
   document.getElementById('root'),

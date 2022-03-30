@@ -33,12 +33,6 @@ export const Layout: FC<LayoutType> = ({
   withDecoration,
   web3 = false,
 }) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const onSetSidebarOpen = (status: boolean) => {
-    setIsOpen(status)
-  }
-
   return (
     <>
       <Sidebar
@@ -57,16 +51,7 @@ export const Layout: FC<LayoutType> = ({
       >
         <Header className={styles.header} fixed={fixedHeader} />
         <main className={styles.main}>
-          <Web3ProviderRoot>
-            {web3 ? (
-              <>
-                <ConnectionModal />
-                {children}
-              </>
-            ) : (
-              <>{children}</>
-            )}
-          </Web3ProviderRoot>
+          {children}
         </main>
         {withDecoration && <div className={styles.decoration}></div>}
         <Footer />

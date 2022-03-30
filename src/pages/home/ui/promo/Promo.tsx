@@ -8,6 +8,7 @@ import { GutterBox } from '../../../../ui/gutter-box'
 import { Heading1 } from '../../../../ui/typography'
 import { TextColor } from '../../../../ui/text-color'
 import { VESTING_CONTRACT_ADDRESS } from '../../../../const/const'
+import { Header } from '../../../../modules/header'
 type PromoType = {}
 
 export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
@@ -15,24 +16,27 @@ export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
   const VESTING_CONTRACT_ADDRESSES = VESTING_CONTRACT_ADDRESS[Number(chainId) || 56]
 
   return (
-    <section className={classNames(className, styles.component)} style={{ marginTop: 50 }}>
-      <GutterBox className={styles.wrapper}>
-        <Heading1 className={styles.title}>
-          The <TextColor color="pink">Decentralized Game</TextColor>
-          <br />
-          to Revolutionize Gamble Industry.
-        </Heading1>
-        {Object.keys(VESTING_CONTRACT_ADDRESSES).map((type) => {
-          return (
-            <Link to={`/vesting/${VESTING_CONTRACT_ADDRESSES[type]}`}>
-              <button className={styles.button}>CLAIM YOUR TOKEN {type}</button>
-            </Link>
-          )
-        })}
-        <Link to={'/staking'}>
-          <button className={styles.button}>STAKE YOUR TOKEN</button>
-        </Link>
-      </GutterBox>
-    </section>
+    <div className={styles.component}>
+      <Header />
+      <section>
+        <GutterBox className={styles.wrapper}>
+          <Heading1 className={styles.title}>
+            The <TextColor color="pink">Decentralized Game</TextColor>
+            <br />
+            to Revolutionize Gamble Industry.
+          </Heading1>
+          {Object.keys(VESTING_CONTRACT_ADDRESSES).map((type) => {
+            return (
+              <Link to={`/vesting/${VESTING_CONTRACT_ADDRESSES[type]}`}>
+                <button className={styles.button}>CLAIM YOUR TOKEN {type}</button>
+              </Link>
+            )
+          })}
+          <Link to={'/staking'}>
+            <button className={styles.button}>STAKE YOUR TOKEN</button>
+          </Link>
+        </GutterBox>
+      </section>
+    </div>
   )
 }

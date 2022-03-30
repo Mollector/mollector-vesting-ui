@@ -2,27 +2,23 @@
 @use "../../../../helper/style/media";
 
 .component {
-  padding-bottom: 5.625rem;
-
-  @include mixin.from(media.$sm) {
-    padding: 5rem 0;
-  }
-
-  @include mixin.from(media.$md) {
-    padding: 5rem 0 7rem;
-  }
+  height: 100vh;
+  background: url('../../../../assets/img/mainbackground.png'), linear-gradient(180deg, #FBC6E2 0%, rgba(255, 231, 254, 0) 100%);
+  background-repeat: no-repeat !important;
+  background-position: center;
+  background-size: cover;
 }
 
 .wrapper {
   --grid: 100%;
-
   align-content: start;
+  padding-top: 75px !important;
   justify-items: center;
 }
 
 .title {
   margin: 0;
-
+  color: #ffffff !important;
   text-align: center;
 
   @include mixin.until(media.$sm) {
