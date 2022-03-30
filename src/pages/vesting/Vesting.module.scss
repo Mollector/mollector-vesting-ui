@@ -104,3 +104,24 @@
   margin-top: 5rem;
   min-width: 15rem;
 }
+
+.copyIcon {
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.addBtn {
+  background-color: #39d7d5;
+  border-radius: 7px;
+  color: white;
+  padding: 1px 7px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

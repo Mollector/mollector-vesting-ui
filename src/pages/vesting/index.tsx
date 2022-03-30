@@ -1,24 +1,40 @@
 import React, { FC, useCallback, useEffect, useState, useMemo } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import classNames from 'classnames'
-import styles from './Vesting.module.scss'
-import theme from '../../ui/styles/Theme.module.scss'
-import { GutterBox } from '../../ui/gutter-box'
-import { getModeClassName } from '../../ui/utils/get-theme-class-name'
 import { useWeb3React } from '@web3-react/core'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { toast } from 'react-toastify'
+import BN from 'bn.js'
+import { Contract } from 'web3-eth-contract'
+import classNames from 'classnames'
+import { GutterBox } from '../../ui/gutter-box'
+import { Button, NavLink } from '../../ui/button'
+import { getModeClassName } from '../../ui/utils/get-theme-class-name'
+import { Box } from '../../modules/box'
 import { TX_SCANERS, NAME, VESTING_CONTRACT_ADDRESS } from '../../const/const'
 import { useWeb3Provider } from '../../web3/web3'
 import { useVestingContract } from '../../web3/contract'
-import { Contract } from 'web3-eth-contract'
-import BN from 'bn.js'
-import { Button, NavLink } from '../../ui/button'
-import { Box } from '../../modules/box'
 import { walletConversion } from '../../utils/convertWallet'
 import { getBalanceAmount } from '../../utils/formatBalance'
+import configuration from '../../configuration'
+import styles from './Vesting.module.scss'
+import theme from '../../ui/styles/Theme.module.scss'
+import { ReactComponent as CopySvg } from '../../assets/img/copy.svg'
 
 type TokensType = {}
 const fetchInformation = async (contract: Contract, address: string) => {
-  var [releaseAmount, lockedAmount, totalShare, released, unlocked, tge, cliff, duration, vestingAmount, totalReleased, totalUnlocked] = await Promise.all([
+  var [
+    releaseAmount,
+    lockedAmount,
+    totalShare,
+    released,
+    unlocked,
+    tge,
+    cliff,
+    duration,
+    vestingAmount,
+    totalReleased,
+    totalUnlocked,
+  ] = await Promise.all([
     contract.methods.calculateReleaseAmount(address).call(),
     contract.methods.tgeUnlock(address).call(),
     contract.methods.shares(address).call(),
@@ -27,9 +43,9 @@ const fetchInformation = async (contract: Contract, address: string) => {
     contract.methods.TGE().call(),
     contract.methods.cliff().call(),
     contract.methods.duration().call(),
-		contract.methods.totalVestingAmount().call(),
-		contract.methods.totalReleased().call(),
-		contract.methods.totalUnlocked().call()
+    contract.methods.totalVestingAmount().call(),
+    contract.methods.totalReleased().call(),
+    contract.methods.totalUnlocked().call(),
   ])
 
   return {
@@ -41,8 +57,8 @@ const fetchInformation = async (contract: Contract, address: string) => {
     tge: new BN(tge.toString(), 10).toNumber() * 1000,
     cliff: new BN(cliff.toString(), 10).toNumber() * 1000,
     duration: new BN(duration.toString(), 10).toNumber() * 1000,
-		vestingAmount: getBalanceAmount(vestingAmount).toNumber(),
-		totalRelease: new BN(totalReleased).add(new BN(totalUnlocked)).toNumber()
+    vestingAmount: getBalanceAmount(vestingAmount).toNumber(),
+    totalRelease: new BN(totalReleased).add(new BN(totalUnlocked)).toNumber(),
   }
 }
 
@@ -56,8 +72,8 @@ const Vesting: FC<TokensType> = () => {
     tge: number
     cliff: number
     duration: number
-		vestingAmount: number,
-		totalRelease: number
+    vestingAmount: number
+    totalRelease: number
   }>({
     releaseAmount: 0,
     lockedAmount: 0,
@@ -67,8 +83,8 @@ const Vesting: FC<TokensType> = () => {
     tge: 0,
     cliff: 0,
     duration: 0,
-		vestingAmount: 0,
-		totalRelease: 0
+    vestingAmount: 0,
+    totalRelease: 0,
   })
   const [txHash, setTxHash] = useState<string>('')
   const [error, setError] = useState<string>('')
@@ -82,6 +98,15 @@ const Vesting: FC<TokensType> = () => {
   const onCancel = () => {
     history('/')
   }
+
+  const formatAddress = useCallback((address) => {
+    if (address) {
+      const addressArr = address.split('')
+      return `${addressArr.slice(0, 7).join('')}...${addressArr.slice(-7).join('')}`
+    }
+
+    return null
+  }, [])
 
   const updateData = useCallback(async () => {
     if (account) {
@@ -98,8 +123,8 @@ const Vesting: FC<TokensType> = () => {
           tge: myAmount.tge,
           cliff: myAmount.cliff,
           duration: myAmount.duration,
-					vestingAmount: myAmount.vestingAmount,
-					totalRelease: myAmount.totalRelease
+          vestingAmount: myAmount.vestingAmount,
+          totalRelease: myAmount.totalRelease,
         })
       }
     }
@@ -131,6 +156,28 @@ const Vesting: FC<TokensType> = () => {
     } catch (ex: any) {
       console.error(ex)
       setError(ex.message || ex.toString())
+    }
+  }
+
+  const onAddToken = async () => {
+    const provider = window.ethereum
+    if (provider) {
+      try {
+        await provider.request({
+          method: 'wallet_watchAsset',
+          params: {
+            type: 'ERC20',
+            options: configuration.TOKEN_INFO,
+          },
+        })
+        return true
+      } catch (error) {
+        console.error(error)
+        return false
+      }
+    } else {
+      console.error(`Can't add token`)
+      return false
     }
   }
 
@@ -176,9 +223,8 @@ const Vesting: FC<TokensType> = () => {
                     </Button>
                   </div>
                   <br />
-                  <div style={{ fontFamily: 'monospace' }}>
-
-                    <div className={styles.text}>
+                  <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
+                  <div className={styles.text}>
                       Total Lock: <span className={styles.amount}>{amount.vestingAmount}</span> MOL
                     </div>
                     <div className={styles.text}>
@@ -196,12 +242,31 @@ const Vesting: FC<TokensType> = () => {
                       Finish at:&nbsp;{new Date(amount.tge + amount.duration).toLocaleDateString()}{' '}
                       {new Date(amount.tge + amount.duration).toLocaleTimeString()}
                     </p>
+                    <p className={styles.text}>
+                      Token address{' '}
+                      <span>
+                        <CopyToClipboard
+                          text="0x06597FFaFD82E66ECeD9209d539032571ABD50d9"
+                          onCopy={() =>
+                            toast.success('Copied', {
+                              hideProgressBar: true,
+                            })
+                          }
+                        >
+                          <CopySvg className={styles.copyIcon} />
+                        </CopyToClipboard>
+                      </span>{' '}
+                      : {formatAddress('0x06597FFaFD82E66ECeD9209d539032571ABD50d9')}{' '}
+                      <span onClick={onAddToken}>
+                        <span className={styles.addBtn}>+</span>
+                      </span>
+                    </p>
                   </div>
                 </Box>
                 {/* {
 									error&&
 									<div style={{textAlign: 'center', color: 'red'}}><br/>{error}</div>
-								} */}
+								} */}{' '}
                 {txHash && (
                   <div style={{ textAlign: 'center' }}>
                     <br />
