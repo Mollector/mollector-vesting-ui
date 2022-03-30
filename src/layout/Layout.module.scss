@@ -2,16 +2,13 @@
 @use "../helper/style/media";
 
 .component {
-  position: relative;
-
+  position: absolute;
+  inset: 0px 0px 0px 300px;
   display: flex;
   flex-direction: column;
-
   min-height: 100vh;
-
   color: rgba(var(--text), 1);
-
-  background-color: rgba(var(--bg), 1);
+  background-color: #f8f8f8;
 }
 
 .light {
@@ -102,4 +99,13 @@
   margin-left: -38rem;
 
   transform: translateX(-50%);
+}
+
+.sidebar {
+  width: 300px;
+  background: none !important;
+  background-image: url('../assets/img/mainbackground.png') !important;
+  background-repeat: no-repeat !important;
+  background-position: 5% 0% !important;
+  background-blend-mode: overlay !important;
 }

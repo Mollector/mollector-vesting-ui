@@ -32,24 +32,6 @@ export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
         <Link to={'/staking'}>
           <button className={styles.button}>STAKE YOUR TOKEN</button>
         </Link>
-        {/* <Link to={'/vesting'}>
-          <button className={styles.button}>CLAIM YOUR TOKEN (Advisor)</button>
-        </Link>
-        <Link to={'/vesting'}>
-          <button className={styles.button}>CLAIM YOUR TOKEN (Marketing)</button>
-        </Link>
-        <Link to={'/vesting'}>
-          <button className={styles.button}>CLAIM YOUR TOKEN (Ecosystem)</button>
-        </Link>
-        <Link to={'/vesting'}>
-          <button className={styles.button}>CLAIM YOUR TOKEN (Advisor)</button>
-        </Link>
-        <Link to={'/vesting'}>
-          <button className={styles.button}>CLAIM YOUR TOKEN (Private)</button>
-        </Link>
-        <Link to={'/staking'}>
-          <button className={styles.button}>STAKE YOUR TOKEN</button>
-        </Link> */}
       </GutterBox>
     </section>
   )

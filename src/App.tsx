@@ -15,14 +15,7 @@ BigNumber.set({
 function App() {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <Layout title="MaxBet | PigFarmTeam" description="The Decentralized House, Revolutionize Gamble Industry.">
-            <Home />
-          </Layout>
-        }
-      />
+      <Route path="/" element={<Home />} />
       <Route
         path="/vesting/:address"
         element={
