@@ -25,13 +25,13 @@ export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
         {Object.keys(VESTING_CONTRACT_ADDRESSES).map((type) => {
           return (
             <Link to={`/vesting/${VESTING_CONTRACT_ADDRESSES[type]}`}>
-              <button className={styles.button}>CLAIM YOUR TOKEN {type}</button>
+              <button className={styles.button}>{type} POOL | CLAIM YOUR TOKEN</button>
             </Link>
           )
         })}
-        <Link to={'/staking'}>
+        {/* <Link to={'/staking'}>
           <button className={styles.button}>STAKE YOUR TOKEN</button>
-        </Link>
+        </Link> */}
         {/* <Link to={'/vesting'}>
           <button className={styles.button}>CLAIM YOUR TOKEN (Advisor)</button>
         </Link>

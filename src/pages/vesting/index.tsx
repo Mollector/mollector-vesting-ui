@@ -199,7 +199,7 @@ const Vesting: FC<TokensType> = () => {
                     </span>
                   </p>
 
-                  <div className={styles.text}>{walletConversion(account as any)}</div>
+                  <div className={styles.text}>{account}</div>
                   <div
                     style={{
                       display: 'flex',
@@ -230,6 +230,32 @@ const Vesting: FC<TokensType> = () => {
                     <div className={styles.text}>
                       Total Released: <span className={styles.amount}>{amount.totalRelease}</span> MOL
                     </div>
+                    <br/>
+
+                    <p className={styles.text} style={{fontWeight: "bold"}}>
+                      Token address: 
+                      <div>0x06597FFaFD82E66ECeD9209d539032571ABD50d9</div>
+                      <div style={{display: 'inline-flex', alignItems: 'center'}}>
+                        <div onClick={onAddToken}>
+                          <span className={styles.addBtn}>+</span>
+                        </div>
+                        &nbsp;
+                        <div style={{display: 'flex', alignItems: 'center'}}>
+                          <CopyToClipboard
+                            text="0x06597FFaFD82E66ECeD9209d539032571ABD50d9"
+                            onCopy={() =>
+                              toast.success('Copied', {
+                                hideProgressBar: true,
+                              })
+                            }
+                          >
+                            <CopySvg className={styles.copyIcon} />
+                          </CopyToClipboard>
+                        </div>
+                      </div>
+                    </p>
+                    <br/>
+
                     <p className={styles.text}>
                       TGE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       {new Date(amount.tge).toLocaleDateString()} {new Date(amount.tge).toLocaleTimeString()}
@@ -241,25 +267,6 @@ const Vesting: FC<TokensType> = () => {
                     <p className={styles.text}>
                       Finish at:&nbsp;{new Date(amount.tge + amount.duration).toLocaleDateString()}{' '}
                       {new Date(amount.tge + amount.duration).toLocaleTimeString()}
-                    </p>
-                    <p className={styles.text}>
-                      Token address{' '}
-                      <span>
-                        <CopyToClipboard
-                          text="0x06597FFaFD82E66ECeD9209d539032571ABD50d9"
-                          onCopy={() =>
-                            toast.success('Copied', {
-                              hideProgressBar: true,
-                            })
-                          }
-                        >
-                          <CopySvg className={styles.copyIcon} />
-                        </CopyToClipboard>
-                      </span>{' '}
-                      : {formatAddress('0x06597FFaFD82E66ECeD9209d539032571ABD50d9')}{' '}
-                      <span onClick={onAddToken}>
-                        <span className={styles.addBtn}>+</span>
-                      </span>
                     </p>
                   </div>
                 </Box>
