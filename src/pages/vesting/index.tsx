@@ -153,12 +153,6 @@ const Vesting: FC<TokensType> = () => {
                   </p>
 
                   <div className={styles.text}>{walletConversion(account as any)}</div>
-									<div className={styles.info}>
-										Total locked amount: <span className={styles.amount}>{amount.vestingAmount}</span> MOL
-									</div>
-									<div className={styles.info}>
-										Total release amount: <span className={styles.amount}>{amount.totalRelease}</span> MOL
-									</div>
                   <div
                     style={{
                       display: 'flex',
@@ -183,6 +177,13 @@ const Vesting: FC<TokensType> = () => {
                   </div>
                   <br />
                   <div style={{ fontFamily: 'monospace' }}>
+
+                    <div className={styles.text}>
+                      Total Lock: <span className={styles.amount}>{amount.vestingAmount}</span> MOL
+                    </div>
+                    <div className={styles.text}>
+                      Total Released: <span className={styles.amount}>{amount.totalRelease}</span> MOL
+                    </div>
                     <p className={styles.text}>
                       TGE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       {new Date(amount.tge).toLocaleDateString()} {new Date(amount.tge).toLocaleTimeString()}
