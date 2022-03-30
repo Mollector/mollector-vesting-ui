@@ -8,6 +8,12 @@ const configs = {
   SUPPORTED_CHAINID: 89,
   SUPPORTED_RPC: 'https://rpc.testnet.tomochain.com/',
   BLOCK_EXPLORER_URLS: 'https://scan.testnet.tomochain.com/',
+  TOKEN_INFO: {
+    address: '0x06597FFaFD82E66ECeD9209d539032571ABD50d9',
+    symbol: 'MOL',
+    decimals: 18,
+    image: '',
+  }
 }
 
 export default Object.freeze({
