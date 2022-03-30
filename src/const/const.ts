@@ -1,7 +1,4 @@
 import { CHAINID_MAPPING, TOKEN_MAPPING, VESTING_ADDRESS_MAPPING } from './types'
-export const GITHUB_PATH = 'https://github.com/pigfarmteam/pigfarmteam.github.io'
-export const TELEGRAM_PATH = 'https://t.me/pigfarm'
-export const TWITTER_PATH = 'https://twitter.com/PigFarmTeam'
 export const TOKENS_PATH = '/tokens'
 export const AIRDROP_PATH = '/airdrop'
 
