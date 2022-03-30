@@ -18,10 +18,9 @@ export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
     <section className={classNames(className, styles.component)} style={{ marginTop: 50 }}>
       <GutterBox className={styles.wrapper}>
         <Heading1 className={styles.title}>
-          The <TextColor color="pink">Decentralized Game</TextColor>
-          <br />
-          to Revolutionize Gamble Industry.
+          Explore and Conquer <br />the Mollector World
         </Heading1>
+
         {Object.keys(VESTING_CONTRACT_ADDRESSES).map((type) => {
           return (
             <Link to={`/vesting/${VESTING_CONTRACT_ADDRESSES[type]}`}>

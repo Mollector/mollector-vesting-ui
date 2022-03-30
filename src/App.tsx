@@ -18,7 +18,7 @@ function App() {
       <Route
         path="/"
         element={
-          <Layout title="MaxBet | PigFarmTeam" description="The Decentralized House, Revolutionize Gamble Industry.">
+          <Layout title="Mollector" description="Explore and conquer the Mollector World">
             <Home />
           </Layout>
         }
@@ -27,8 +27,8 @@ function App() {
         path="/vesting/:address"
         element={
           <Layout
-            title="MaxBet | PigFarmTeam"
-            description="The Decentralized House to Revolutionize Gamble Industry."
+            title="Mollector"
+            description="Explore and conquer the Mollector World"
             mode="transparent"
             fixedHeader={true}
             withDecoration={true}
@@ -42,8 +42,8 @@ function App() {
         path="/staking"
         element={
           <Layout
-            title="MaxBet | PigFarmTeam"
-            description="The Decentralized House to Revolutionize Gamble Industry."
+            title="Mollector"
+            description="Explore and conquer the Mollector World"
             mode="transparent"
             fixedHeader={true}
             withDecoration={true}
@@ -57,8 +57,8 @@ function App() {
         path="airdrop"
         element={
           <Layout
-            title="MaxBet | PigFarmTeam"
-            description="The Decentralized House to Revolutionize Gamble Industry."
+            title="Mollector"
+            description="Explore and conquer the Mollector World"
             mode="transparent"
             fixedHeader={true}
             withDecoration={true}
