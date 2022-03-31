@@ -1,6 +1,6 @@
 
-@use "../../helper/style/mixin";
-@use "../../helper/style/media";
+@use "helper/style/mixin";
+@use "helper/style/media";
 
 @include mixin.until(media.$md) {
   .dark {
