@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import cx from 'classnames'
+import styles from './styles.module.scss'
 
+interface ModalProps {
+  children: ReactNode
+}
 
-const Modal = ({
-  showModalHeader = false,
-  headerBackground = 'transparent',
-  minWidth = '320px',
-  ...props
-}) => (
+const Modal: React.FC<ModalProps> = ({ children, ...props }) => (
   <div>
-    {/* {children} */}
+    <div>
+      <div>{children}</div>
+    </div>
   </div>
 )
-
 
 export default Modal
