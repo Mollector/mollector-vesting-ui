@@ -7,6 +7,19 @@ const StakingNewUI = () => {
   return (
     <Layout>
       <StakeBox/>
+      <br />
+      <StakeItem/>
+      <br />
+      <StakeItem/>
+      <br />
+      <StakeItem/>
+      <br />
+      <StakeItem/>
+      <br />
+      <StakeItem/>
+      <br />
+      <StakeItem/>
+      <br />
       <StakeItem/>
     </Layout>
   )
