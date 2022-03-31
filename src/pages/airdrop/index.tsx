@@ -13,7 +13,7 @@ import BN from "bn.js";
 import { Button, NavLink } from "../../ui/button";
 import { Box } from "../../modules/box";
 import { walletConversion } from "../../utils/convertWallet";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 type TokensType = {};
@@ -70,10 +70,10 @@ const Airdrop: FC<TokensType> = () => {
 	const provider = useWeb3Provider();
 	const { active, chainId = 56, account } = useWeb3React();
 	const contract = useVestingContract(provider, window.location.search.replace('?', ''));
-	const history = useNavigate()
+	const history = useHistory()
 
 	const onCancel = () => {
-		history('/')
+		history.push('/')
 	}
 
 	const updateData = useCallback(async () => {

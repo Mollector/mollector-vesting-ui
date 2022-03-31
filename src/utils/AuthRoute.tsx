@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { Route, Navigate } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 type AuthRouteProps = {
   component: ReactNode
@@ -8,9 +8,9 @@ type AuthRouteProps = {
 
 const AuthRoute :FC<AuthRouteProps> = ({ component: Component, ...rest }) => {
   const { account } = useWeb3React()
-
+  console.log(account, 'account ?')
   if (!account) {
-    return <Navigate to="/" />
+    return <Redirect to="/" />
   }
   
   // @ts-ignore

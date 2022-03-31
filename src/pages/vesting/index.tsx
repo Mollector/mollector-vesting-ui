@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useState, useMemo } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { toast } from 'react-toastify'
@@ -20,6 +20,9 @@ import styles from './Vesting.module.scss'
 import theme from '../../ui/styles/Theme.module.scss'
 import { ReactComponent as CopySvg } from '../../assets/img/copy.svg'
 
+type ParamsType = {
+  address: string
+}
 type TokensType = {}
 const fetchInformation = async (contract: Contract, address: string) => {
   var [
@@ -91,12 +94,12 @@ const Vesting: FC<TokensType> = () => {
 
   const provider = useWeb3Provider()
   const { active, chainId = 56, account } = useWeb3React()
-  const { address: VESTING_CONTRACT_ADDRESS } = useParams()
+  const { address: VESTING_CONTRACT_ADDRESS } = useParams<ParamsType>()
   const contract = useVestingContract(provider, VESTING_CONTRACT_ADDRESS || '')
-  const history = useNavigate()
+  const history = useHistory()
 
   const onCancel = () => {
-    history('/')
+    history.push('/')
   }
 
   const formatAddress = useCallback((address) => {

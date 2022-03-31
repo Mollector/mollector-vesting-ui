@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { Link } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core'
 import classNames from 'classnames'
 import styles from './Header.module.scss'
@@ -19,7 +20,9 @@ export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed }
   return (
     <header className={classNames(styles.component, fixed && styles.fixed, className)}>
       <div className={styles.wrapper}>
-        <img className={styles.logo} src={LogoMenu} alt="logo" />
+        <Link to="/">
+          <img className={styles.logo} src={LogoMenu} alt="logo" />
+        </Link>
         <button className={styles.connectStyle}>Connect to wallet</button>
       </div>
     </header>
