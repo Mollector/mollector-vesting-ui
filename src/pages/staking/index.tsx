@@ -17,6 +17,7 @@ import useStakeValue from '../../hooks/useStakeValue'
 import useIsApproved from '../../hooks/useIsApproved'
 import { getDecimalAmount } from '../../utils/formatBalance'
 import useApprove from '../../hooks/useApprove'
+import { Layout } from '../../layout'
 
 interface StakingProps {}
 
@@ -153,185 +154,181 @@ const Staking: React.FC<StakingProps> = () => {
   }
 
   return (
-    <>
+    <Layout>
       <section className={styles.component}>
         <GutterBox className={styles.gutter}>
           <div className={classNames(styles.wrapper, getModeClassName('light', theme))}>
-            {!active ? (
-              <></>
-            ) : (
-              <div className={styles.container}>
-                <div className={styles.containerWrapper}>
-                  <div className={styles.boxWrapper}>
-                    <Box
-                      className={styles.miniBox}
-                      style={{
-                        marginRight: '30px',
-                      }}
-                    >
-                      <p className={styles.title}>
-                        Your stake:
-                        <br />
-                        <span>
-                          {token1StakeValue} {TOKEN1_SYMBOL}
-                        </span>
-                      </p>
-                      <p className={styles.text}>
-                        Total lock value: {token1StakedBalance} {TOKEN1_SYMBOL}
-                      </p>
+            <div className={styles.container}>
+              <div className={styles.containerWrapper}>
+                <div className={styles.boxWrapper}>
+                  <Box
+                    className={styles.miniBox}
+                    style={{
+                      marginRight: '30px',
+                    }}
+                  >
+                    <p className={styles.title}>
+                      Your stake:
+                      <br />
+                      <span>
+                        {token1StakeValue} {TOKEN1_SYMBOL}
+                      </span>
+                    </p>
+                    <p className={styles.text}>
+                      Total lock value: {token1StakedBalance} {TOKEN1_SYMBOL}
+                    </p>
 
-                      <div className={styles.inputContainer}>
-                        <div
-                          style={{
-                            width: '100%',
-                          }}
-                        >
-                          <input
-                            className={classNames({
-                              [styles.input]: true,
-                              [styles.empty]: `${token1Value}`,
-                              [styles.inputError]: `${input1Error}`,
-                            })}
-                            value={token1Value}
-                            onChange={onHandleChangeToken1Value}
-                          />
+                    <div className={styles.inputContainer}>
+                      <div
+                        style={{
+                          width: '100%',
+                        }}
+                      >
+                        <input
+                          className={classNames({
+                            [styles.input]: true,
+                            [styles.empty]: `${token1Value}`,
+                            [styles.inputError]: `${input1Error}`,
+                          })}
+                          value={token1Value}
+                          onChange={onHandleChangeToken1Value}
+                        />
 
-                          <div className={styles.inputInfo}>
-                            <div className={classNames({ [styles.blur]: !token1Value })}>
-                              {token1Value || 0} {TOKEN1_SYMBOL}
-                            </div>
-                            <span className={styles.maxBtn} onClick={onMaxToken1}>
-                              Max
-                            </span>
+                        <div className={styles.inputInfo}>
+                          <div className={classNames({ [styles.blur]: !token1Value })}>
+                            {token1Value || 0} {TOKEN1_SYMBOL}
                           </div>
+                          <span className={styles.maxBtn} onClick={onMaxToken1}>
+                            Max
+                          </span>
                         </div>
                       </div>
-                      <div className={styles.wrapperBtn}>
-                        {isToken1Approved ? (
-                          <Button
-                            color="pink"
-                            size="large"
-                            disabled={!token1Value}
-                            variant="contained"
-                            isLoading={isStakingToken1}
-                            onClick={() => onHandleStake(1)}
-                            className={styles.button}
-                          >
-                            Stake
-                          </Button>
-                        ) : (
-                          <Button
-                            color="pink"
-                            size="large"
-                            variant="contained"
-                            onClick={onHandleApproveToken1}
-                            className={styles.button}
-                            isLoading={(isLoadingToken1Approved || isLoadingOnApproveToken1) as boolean}
-                          >
-                            Approve
-                          </Button>
-                        )}
+                    </div>
+                    <div className={styles.wrapperBtn}>
+                      {isToken1Approved ? (
+                        <Button
+                          color="pink"
+                          size="large"
+                          disabled={!token1Value}
+                          variant="contained"
+                          isLoading={isStakingToken1}
+                          onClick={() => onHandleStake(1)}
+                          className={styles.button}
+                        >
+                          Stake
+                        </Button>
+                      ) : (
                         <Button
                           color="pink"
                           size="large"
                           variant="contained"
-                          disabled={token1StakeValue === 0}
-                          style={{
-                            backgroundColor: '#D17627',
-                          }}
-                          isLoading={isWithdrawToken1}
-                          onClick={() => onHandleWithdraw(1)}
+                          onClick={onHandleApproveToken1}
                           className={styles.button}
+                          isLoading={(isLoadingToken1Approved || isLoadingOnApproveToken1) as boolean}
                         >
-                          Withdraw all
+                          Approve
                         </Button>
-                      </div>
-                    </Box>
-                    <Box className={styles.info}></Box>
-                  </div>
-                  <div className={styles.boxWrapper}>
-                    <Box className={styles.miniBox}>
-                      <p className={styles.title}>
-                        Your stake:
-                        <br />
-                        <span>
-                          {token2StakeValue} {TOKEN2_SYMBOL}
-                        </span>
-                      </p>
-                      <p className={styles.text}>
-                        Total lock value: {token2StakedBalance} {TOKEN2_SYMBOL}
-                      </p>
-                      <div className={styles.inputContainer}>
-                        <div
-                          style={{
-                            width: '100%',
-                          }}
-                        >
-                          <input
-                            className={classNames(styles.input, { [styles.empty]: `${token2Value}` })}
-                            value={token2Value}
-                            onChange={onHandleChangeToken2Value}
-                          />
-                          <div className={styles.inputInfo}>
-                            <div className={classNames({ [styles.blur]: !token2Value })}>
-                              {token2Value || 0} {TOKEN2_SYMBOL}
-                            </div>
-                            <span className={styles.maxBtn} onClick={onMaxToken2}>
-                              Max
-                            </span>
+                      )}
+                      <Button
+                        color="pink"
+                        size="large"
+                        variant="contained"
+                        disabled={token1StakeValue === 0}
+                        style={{
+                          backgroundColor: '#D17627',
+                        }}
+                        isLoading={isWithdrawToken1}
+                        onClick={() => onHandleWithdraw(1)}
+                        className={styles.button}
+                      >
+                        Withdraw all
+                      </Button>
+                    </div>
+                  </Box>
+                  <Box className={styles.info}></Box>
+                </div>
+                <div className={styles.boxWrapper}>
+                  <Box className={styles.miniBox}>
+                    <p className={styles.title}>
+                      Your stake:
+                      <br />
+                      <span>
+                        {token2StakeValue} {TOKEN2_SYMBOL}
+                      </span>
+                    </p>
+                    <p className={styles.text}>
+                      Total lock value: {token2StakedBalance} {TOKEN2_SYMBOL}
+                    </p>
+                    <div className={styles.inputContainer}>
+                      <div
+                        style={{
+                          width: '100%',
+                        }}
+                      >
+                        <input
+                          className={classNames(styles.input, { [styles.empty]: `${token2Value}` })}
+                          value={token2Value}
+                          onChange={onHandleChangeToken2Value}
+                        />
+                        <div className={styles.inputInfo}>
+                          <div className={classNames({ [styles.blur]: !token2Value })}>
+                            {token2Value || 0} {TOKEN2_SYMBOL}
                           </div>
+                          <span className={styles.maxBtn} onClick={onMaxToken2}>
+                            Max
+                          </span>
                         </div>
                       </div>
-                      <div className={styles.wrapperBtn}>
-                        {isToken2Approved ? (
-                          <Button
-                            color="pink"
-                            size="large"
-                            variant="contained"
-                            disabled={!token2Value}
-                            isLoading={isStakingToken2}
-                            onClick={() => onHandleStake(2)}
-                            className={styles.button}
-                          >
-                            Stake
-                          </Button>
-                        ) : (
-                          <Button
-                            color="pink"
-                            size="large"
-                            variant="contained"
-                            onClick={onHandleApproveToken2}
-                            className={styles.button}
-                            isLoading={(isLoadingToken2Approved || isLoadingOnApproveToken2) as boolean}
-                          >
-                            Approve
-                          </Button>
-                        )}
+                    </div>
+                    <div className={styles.wrapperBtn}>
+                      {isToken2Approved ? (
                         <Button
                           color="pink"
                           size="large"
                           variant="contained"
-                          disabled={token2StakeValue === 0}
-                          style={{
-                            backgroundColor: '#D17627',
-                          }}
-                          isLoading={isWithdrawToken2}
-                          onClick={() => onHandleWithdraw(2)}
+                          disabled={!token2Value}
+                          isLoading={isStakingToken2}
+                          onClick={() => onHandleStake(2)}
                           className={styles.button}
                         >
-                          Withdraw all
+                          Stake
                         </Button>
-                      </div>
-                    </Box>
-                    <Box className={styles.info}></Box>
-                  </div>
+                      ) : (
+                        <Button
+                          color="pink"
+                          size="large"
+                          variant="contained"
+                          onClick={onHandleApproveToken2}
+                          className={styles.button}
+                          isLoading={(isLoadingToken2Approved || isLoadingOnApproveToken2) as boolean}
+                        >
+                          Approve
+                        </Button>
+                      )}
+                      <Button
+                        color="pink"
+                        size="large"
+                        variant="contained"
+                        disabled={token2StakeValue === 0}
+                        style={{
+                          backgroundColor: '#D17627',
+                        }}
+                        isLoading={isWithdrawToken2}
+                        onClick={() => onHandleWithdraw(2)}
+                        className={styles.button}
+                      >
+                        Withdraw all
+                      </Button>
+                    </div>
+                  </Box>
+                  <Box className={styles.info}></Box>
                 </div>
               </div>
-            )}
+            </div>
           </div>
         </GutterBox>
       </section>
-    </>
+    </Layout>
   )
 }
 

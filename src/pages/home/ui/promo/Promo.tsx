@@ -17,7 +17,7 @@ export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
 
   return (
     <div className={styles.component}>
-      <Header />
+      <Header transparent/>
       <section>
         <GutterBox className={styles.wrapper}>
           <Heading1 className={styles.title}>

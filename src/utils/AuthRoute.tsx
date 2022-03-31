@@ -8,7 +8,6 @@ type AuthRouteProps = {
 
 const AuthRoute :FC<AuthRouteProps> = ({ component: Component, ...rest }) => {
   const { account } = useWeb3React()
-  console.log(account, 'account ?')
   if (!account) {
     return <Redirect to="/" />
   }

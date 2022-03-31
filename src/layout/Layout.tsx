@@ -25,16 +25,12 @@ type LayoutType = {
 export const Layout: FC<LayoutType> = ({
   children,
   className,
-  title = '',
-  description = '',
-  keywords,
   mode = 'dark',
-  fixedHeader,
-  withDecoration,
-  web3 = false,
+  fixedHeader = true,
+  withDecoration = true,
 }) => {
   return (
-    <>
+    <div>
       <Sidebar
         sidebar={<Slider />}
         sidebarClassName={styles.sidebar}
@@ -56,6 +52,6 @@ export const Layout: FC<LayoutType> = ({
         {withDecoration && <div className={styles.decoration}></div>}
         <Footer />
       </div>
-    </>
+    </div>
   )
 }

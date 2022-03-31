@@ -8,9 +8,10 @@ import LogoMenu from '../../assets/img/menu.png'
 
 type HeaderType = {
   fixed?: boolean
+  transparent?: boolean
 }
 
-export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed }) => {
+export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed, transparent }) => {
   const { account } = useWeb3React()
 
   if (account) {
@@ -18,8 +19,8 @@ export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed }
   }
 
   return (
-    <header className={classNames(styles.component, fixed && styles.fixed, className)}>
-      <div className={styles.wrapper}>
+    <header className={classNames(styles.component, styles.fixed, className)}>
+      <div className={classNames(styles.wrapper, transparent && styles.transparent)}>
         <Link to="/">
           <img className={styles.logo} src={LogoMenu} alt="logo" />
         </Link>

@@ -19,6 +19,7 @@ import configuration from '../../configuration'
 import styles from './Vesting.module.scss'
 import theme from '../../ui/styles/Theme.module.scss'
 import { ReactComponent as CopySvg } from '../../assets/img/copy.svg'
+import { Layout } from '../../layout'
 
 type ParamsType = {
   address: string
@@ -185,13 +186,10 @@ const Vesting: FC<TokensType> = () => {
   }
 
   return (
-    <>
+    <Layout>
       <section className={styles.component}>
         <GutterBox className={styles.gutter}>
           <div className={classNames(styles.wrapper, getModeClassName('light', theme))}>
-            {!active ? (
-              <></>
-            ) : (
               <div>
                 <Box className={styles.box}>
                   <p className={styles.title}>
@@ -280,11 +278,10 @@ const Vesting: FC<TokensType> = () => {
                   </div>
                 )}
               </div>
-            )}
           </div>
         </GutterBox>
       </section>
-    </>
+    </Layout>
   )
 }
 

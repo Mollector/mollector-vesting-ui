@@ -15,40 +15,14 @@ BigNumber.set({
 function App() {
   return (
     <Switch>
-      <Route path="/">
-        <Route component={Home} />
-      </Route>
       <Route path="/vesting/:address">
-        <AuthRoute
-          component={
-            <Layout
-              title="MaxBet | PigFarmTeam"
-              description="The Decentralized House to Revolutionize Gamble Industry."
-              mode="transparent"
-              fixedHeader={true}
-              withDecoration={true}
-              web3={true}
-            >
-              <Vesting />
-            </Layout>
-          }
-        />
+        <AuthRoute component={Vesting} />
       </Route>
       <Route path="/staking">
-        <AuthRoute
-          component={
-            <Layout
-              title="MaxBet | PigFarmTeam"
-              description="The Decentralized House to Revolutionize Gamble Industry."
-              mode="transparent"
-              fixedHeader={true}
-              withDecoration={true}
-              web3={true}
-            >
-              <Staking />
-            </Layout>
-          }
-        />
+        <AuthRoute component={Staking} />
+      </Route>
+      <Route path="/">
+        <Route component={Home} />
       </Route>
     </Switch>
   )

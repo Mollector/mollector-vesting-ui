@@ -38,7 +38,11 @@
 
   box-sizing: border-box;
 
-  background-color: rgba(var(--bg), 1);
+  background-color: #f8f8f8;
+}
+
+.transparent {
+  background-color: transparent !important;
 }
 
 .logo {
