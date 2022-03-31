@@ -31,10 +31,10 @@ const fetchInformation = async (contract: Contract, address: string) => {
     unlocked,
     tge,
     cliff,
-    duration,
-    vestingAmount,
-    totalReleased,
-    totalUnlocked,
+    duration
+    // vestingAmount,
+    // totalReleased,
+    // totalUnlocked,
   ] = await Promise.all([
     contract.methods.calculateReleaseAmount(address).call(),
     contract.methods.tgeUnlock(address).call(),
@@ -44,9 +44,9 @@ const fetchInformation = async (contract: Contract, address: string) => {
     contract.methods.TGE().call(),
     contract.methods.cliff().call(),
     contract.methods.duration().call(),
-    contract.methods.totalVestingAmount().call(),
-    contract.methods.totalReleased().call(),
-    contract.methods.totalUnlocked().call(),
+    // contract.methods.totalVestingAmount().call(),
+    // contract.methods.totalReleased().call(),
+    // contract.methods.totalUnlocked().call(),
   ])
 
   return {
@@ -58,8 +58,8 @@ const fetchInformation = async (contract: Contract, address: string) => {
     tge: new BN(tge.toString(), 10).toNumber() * 1000,
     cliff: new BN(cliff.toString(), 10).toNumber() * 1000,
     duration: new BN(duration.toString(), 10).toNumber() * 1000,
-    vestingAmount: getBalanceAmount(vestingAmount).toNumber(),
-    totalRelease: new BN(totalReleased).add(new BN(totalUnlocked)).toNumber(),
+    vestingAmount: 0,// getBalanceAmount(vestingAmount).toNumber(),
+    totalRelease: 0, //new BN(totalReleased).add(new BN(totalUnlocked)).toNumber(),
   }
 }
 
