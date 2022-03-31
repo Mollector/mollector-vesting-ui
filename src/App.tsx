@@ -13,7 +13,6 @@ BigNumber.set({
 })
 
 function App() {
-  delete localStorage.walletconnect
   return (
     <Routes>
       <Route

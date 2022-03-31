@@ -10,6 +10,8 @@ import App from './App'
 import { RefreshContextProvider } from './context/RefreshContext'
 import reportWebVitals from './reportWebVitals'
 
+delete localStorage.walletconnect
+
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
