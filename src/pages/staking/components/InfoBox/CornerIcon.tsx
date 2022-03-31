@@ -19,7 +19,7 @@ const CornerIcon = () => {
         {
             isOpenInfo && <div className={styles.additionBoxInfo}>
                 <img className={styles.imgGift} src={GiftIcon} alt="" />
-                <span className={styles.giftText}>est. 16 BUSD</span>
+                <span className={styles.giftTextInfo}>est. 16 BUSD</span>
             </div>
         }
     </>
