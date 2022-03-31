@@ -1,0 +1,25 @@
+.headerText {
+  font-weight: 450;
+  font-size: 26px;
+  line-height: 34.97px;
+  color: #505d6f;
+}
+
+.amountText {
+  font-size: 14px;
+  line-height: 18px;
+  margin: 10px 0px;
+  color: #97a3ae;
+  font-weight: 400;
+}
+
+.box {
+  width: calc(50% - 20px);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  background-color: white;
+  padding: 25px 20px;
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}

@@ -15,6 +15,7 @@ type HeaderType = {
 export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed, transparent }) => {
   const { account } = useWeb3React()
   const [onPresentLoginModal] = useModal(<LoginModal />)
+  
   if (account) {
     return null
   }

@@ -1,0 +1,44 @@
+.input {
+  all: unset;
+  border: 2px solid #e6e6e6;
+  border-radius: 3.0625rem;
+  width: calc(100% - 60px);
+  font-size: 16px;
+  z-index: 10;
+  padding: 0 30px;
+  height: 100%;
+}
+
+.inputError {
+  border: 2px solid red !important;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+  height: 60px;
+}
+
+.empty {
+  color: #ffffff;
+  caret-color: #000000;
+}
+
+.blur {
+  opacity: 0.5;
+}
+
+.inputInfo {
+  display: flex;
+  width: calc(100% - 64px);
+  justify-content: space-between;
+  position: relative;
+  height: 0px;
+  bottom: 32px;
+  z-index: 0;
+  left: 32px;
+  align-items: center;
+}

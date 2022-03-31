@@ -1,0 +1,46 @@
+.descriptionText {
+  font-weight: 450;
+  font-size: 13px;
+  line-height: 17.49px;
+  color: #14b5b1;
+}
+
+.headerText {
+  font-weight: 450;
+  font-size: 26px;
+  line-height: 34.97px;
+  color: #505d6f;
+}
+
+.row {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 30px 0px;
+}
+
+.giftIcon {
+  margin-right: 5px;
+}
+
+.boxWrapper {
+  display: flex;
+}
+
+.amountText {
+  font-size: 14px;
+  line-height: 18px;
+  margin: 10px 0px;
+  color: #97a3ae;
+  font-weight: 400;
+}
+
+.box {
+  width: calc(50% - 20px);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  background-color: white;
+  padding: 25px 15px;
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}
