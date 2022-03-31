@@ -21,7 +21,7 @@ function getLibrary(provider: any) {
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <HashRouter basename='/'>
       <Web3ReactProvider getLibrary={getLibrary}>
         <RefreshContextProvider>
           <ModalProvider>

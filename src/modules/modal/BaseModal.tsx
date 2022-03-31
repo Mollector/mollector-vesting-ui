@@ -7,10 +7,8 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ children, ...props }) => (
-  <div>
-    <div>
-      <div>{children}</div>
-    </div>
+  <div className={styles.modalContainer}>
+    <div>{children}</div>
   </div>
 )
 

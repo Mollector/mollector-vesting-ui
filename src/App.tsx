@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { Layout } from './layout'
 import Home from './pages/home'
@@ -24,6 +24,7 @@ function App() {
       <Route path="/">
         <Route component={Home} />
       </Route>
+    <Redirect to="/" />
     </Switch>
   )
 }
