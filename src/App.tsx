@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import AuthRoute from 'utils/AuthRoute'
 import Vesting from 'pages/vesting'
-import Staking from 'pages/staking'
+import Staking from 'pages/staking/Staking'
 import StakingNewUI from 'pages/staking-new-ui'
 import Home from 'pages/home'
 
