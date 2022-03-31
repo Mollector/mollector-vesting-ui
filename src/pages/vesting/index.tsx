@@ -218,7 +218,7 @@ const Vesting: FC<TokensType> = () => {
                       size="large"
                       variant="contained"
                       onClick={claimAction}
-                      disabled={amount.releaseAmount + amount.lockedAmount == 0}
+                      disabled={amount.releaseAmount + amount.lockedAmount == 0 || amount.tge > new Date().getTime()}
                       style={{ width: '46%' }}
                     >
                       Claim
