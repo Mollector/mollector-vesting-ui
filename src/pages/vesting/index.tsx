@@ -111,22 +111,23 @@ const Vesting: FC<TokensType> = () => {
   const updateData = useCallback(async () => {
     if (account) {
       const myAmount = await fetchInformation(contract, account)
-      if (myAmount.tge <= new Date().getTime()) {
-        setAmount(myAmount)
-      } else {
-        setAmount({
-          releaseAmount: 0,
-          lockedAmount: 0,
-          totalShare: 0,
-          released: 0,
-          unlocked: 0,
-          tge: myAmount.tge,
-          cliff: myAmount.cliff,
-          duration: myAmount.duration,
-          vestingAmount: myAmount.vestingAmount,
-          totalRelease: myAmount.totalRelease,
-        })
-      }
+      console.log(myAmount)
+      setAmount(myAmount)
+      // if (myAmount.tge <= new Date().getTime()) {
+      // } else {
+      //   setAmount({
+      //     releaseAmount: 0,
+      //     lockedAmount: 0,
+      //     totalShare: 0,
+      //     released: 0,
+      //     unlocked: 0,
+      //     tge: myAmount.tge,
+      //     cliff: myAmount.cliff,
+      //     duration: myAmount.duration,
+      //     vestingAmount: myAmount.vestingAmount,
+      //     totalRelease: myAmount.totalRelease,
+      //   })
+      // }
     }
   }, [contract, account])
 
@@ -224,11 +225,23 @@ const Vesting: FC<TokensType> = () => {
                   </div>
                   <br />
                   <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
-                  <div className={styles.text}>
-                      Total Lock: <span className={styles.amount}>{amount.vestingAmount}</span> MOL
+                  {/* lockedAmount: new BN(lockedAmount.toString(), 10).div(new BN('1000000000000000000')).toNumber(),
+    totalShare: new BN(totalShare.toString(), 10).div(new BN('1000000000000000000')).toNumber(),
+    released: new BN(released.toString(), 10).div(new BN('1000000000000000000')).toNumber(),
+    unlocked: new BN(unlocked.toString(), 10).div(new BN('1000000000000000000')).toNumber(), */}
+
+{/* contract.methods.tgeUnlock(address).call(),
+    contract.methods.shares(address).call(),
+    contract.methods.released(address).call(),
+    contract.methods.unlocked(address).call(), */}
+                    <div className={styles.text}>
+                      Your Total Lock: <span className={styles.amount}>{amount.totalShare + amount.lockedAmount - amount.released - amount.unlocked}</span> MOL
                     </div>
                     <div className={styles.text}>
-                      Total Released: <span className={styles.amount}>{amount.totalRelease}</span> MOL
+                      Your Total Release : <span className={styles.amount}>{amount.released + amount.unlocked}</span> MOL
+                    </div>
+                    <div className={styles.text}>
+                      Your TGE Amount : <span className={styles.amount}>{amount.lockedAmount}</span> MOL
                     </div>
                     <br/>
 
