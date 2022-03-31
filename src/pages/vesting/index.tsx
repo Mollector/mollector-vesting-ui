@@ -196,7 +196,7 @@ const Vesting: FC<TokensType> = () => {
                     Available Amount:
                     <br />
                     <span>
-                      {parseFloat((amount.releaseAmount + amount.lockedAmount).toFixed(4)).toLocaleString()} {NAME}
+                      {amount.tge > new Date().getTime() ? 0 : parseFloat((amount.releaseAmount + amount.lockedAmount).toFixed(4)).toLocaleString()} {NAME}
                     </span>
                   </p>
 
