@@ -13,8 +13,8 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
-import { ConnectorNames, connectorsByName } from '../utils/web3React'
-import { setupNetwork } from '../ui/utils/wallet'
+import { ConnectorNames, connectorsByName } from 'utils/web3React'
+import { setupNetwork } from 'ui/utils/wallet'
 
 const useAuth = () => {
   const { activate, deactivate, chainId } = useWeb3React()

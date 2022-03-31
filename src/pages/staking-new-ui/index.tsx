@@ -1,7 +1,7 @@
 import React from 'react'
-import { Layout } from '../../layout'
-import { StakeBox } from '../../modules/stake-box'
-import { StakeItem } from '../../modules/stake-item'
+import { Layout } from 'layout'
+import { StakeBox } from 'modules/stake-box'
+import { StakeItem } from 'modules/stake-item'
 
 const StakingNewUI = () => {
   return (

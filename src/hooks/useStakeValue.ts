@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
-import { useStakingContract } from '../web3/contract'
-import { useWeb3Provider } from '../web3/web3'
-import { getBalanceNumber } from '../utils/formatBalance'
+import { useWeb3Provider } from 'web3/web3'
 import useRefresh from './useRefresh'
+import { useStakingContract } from 'web3/contract'
+import { getBalanceNumber } from 'utils/formatBalance'
 
 const useStakeValue = (tokenAddress: string, stakeContractAddress: string) => {
   const provider = useWeb3Provider()

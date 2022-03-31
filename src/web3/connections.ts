@@ -10,8 +10,8 @@ import {
   UserRejectedRequestError as UserRejectedRequestErrorWalletConnect,
   WalletConnectConnector,
 } from '@web3-react/walletconnect-connector'
-import { KNOWN_WALLETS, KNOWN_WALLET_KEY } from './wallets'
-import { setupNetwork } from '../ui/utils/wallet'
+import { setupNetwork } from 'ui/utils/wallet'
+import { KNOWN_WALLETS } from './wallets'
 
 const SELECT_WEB3_PROVIDER_KEY = 'SELECT_WEB3_PROVIDER_KEY'
 

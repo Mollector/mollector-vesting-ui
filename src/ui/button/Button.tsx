@@ -2,7 +2,7 @@ import React, { CSSProperties, ComponentType, FC, ReactNode } from 'react'
 import { Oval } from 'react-loader-spinner'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
-import { EmptyObject, MaybeWithClassName, WithChildren } from '../../helper/react/types'
+import { EmptyObject, MaybeWithClassName, WithChildren } from 'helper/react/types'
 
 import styles from './Button.module.scss'
 

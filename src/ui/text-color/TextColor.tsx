@@ -2,9 +2,9 @@ import classNames from "classnames";
 import type { CSSProperties, FC } from "react";
 
 import styles from "../styles/Color.module.scss";
-import { getColorClassName } from "../utils/get-color-class-name";
-import { ColorType } from "../types";
-import { MaybeWithClassName, WithChildren } from "../../helper/react/types";
+import { MaybeWithClassName, WithChildren } from "helper/react/types";
+import { ColorType } from "ui/types";
+import { getColorClassName } from "ui/utils/get-color-class-name";
 
 type TextColorType = { color: ColorType; style?: CSSProperties };
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import Home from './pages/home'
-import Vesting from './pages/vesting'
-import Staking from './pages/staking'
-import AuthRoute from './utils/AuthRoute'
-import StakingNewUI from './pages/staking-new-ui'
+import AuthRoute from 'utils/AuthRoute'
+import Vesting from 'pages/vesting'
+import Staking from 'pages/staking'
+import StakingNewUI from 'pages/staking-new-ui'
+import Home from 'pages/home'
 
 // Config for big number
 BigNumber.set({

@@ -1,8 +1,6 @@
 import { FC, RefObject, useCallback, useRef } from "react";
-import { useIntersectionObserver } from "../../hooks/use-intersection-observer";
-
-import { Video } from "../video";
-import type { VideoType } from "../video";
+import { useIntersectionObserver } from "hooks/use-intersection-observer";
+import { Video, VideoType } from "ui/video";
 
 const closeEqual = (a: number[], b: number[]): boolean => {
 	for (let i = 0; i < 3; ++i) {

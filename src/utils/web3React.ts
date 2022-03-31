@@ -1,6 +1,6 @@
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
-import configs from '../configuration'
+import configs from 'configuration'
 
 export enum ConnectorNames {
   Injected = "injected",

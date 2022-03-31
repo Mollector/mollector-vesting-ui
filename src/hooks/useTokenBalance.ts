@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { useBep20TokenContract } from '../web3/contract'
-import { useWeb3Provider } from '../web3/web3'
-import { getBalanceNumber } from '../utils/formatBalance'
+import { useWeb3Provider } from 'web3/web3'
 import useRefresh from './useRefresh'
+import { useBep20TokenContract } from 'web3/contract'
+import { getBalanceNumber } from 'utils/formatBalance'
 
 type ADDRESS_TYPE = string | undefined | null
 

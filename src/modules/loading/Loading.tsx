@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { Box } from "../box";
+import { Box } from "modules/box";
+import { HeadlinePlusSubline } from "modules/headline-plus-subline";
 import styles from "./Loading.module.scss";
-import { HeadlinePlusSubline } from "../headline-plus-subline";
 
 export const Loading: FC<{ headline?: string }> = ({ headline }) => {
 	return (

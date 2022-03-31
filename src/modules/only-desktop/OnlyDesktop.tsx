@@ -1,8 +1,8 @@
 import React, { CSSProperties, FC } from "react";
 import styles from "./OnlyDesktop.module.scss";
-import { GutterBox } from "../../ui/gutter-box";
-import { useWindowSize } from "../../hooks/use-window-size";
-import { Heading4, Body1 } from "../../ui/typography";
+import { GutterBox } from "ui/gutter-box";
+import { useWindowSize } from "hooks/use-window-size";
+import { Heading4, Body1 } from "ui/typography";
 
 export const OnlyDesktop: FC = () => {
 	const windowHeight = useWindowSize()[1];

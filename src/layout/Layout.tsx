@@ -1,14 +1,13 @@
 import { FC, ReactNode, useState } from 'react'
 import Sidebar from 'react-sidebar'
 import classNames from 'classnames'
-import { Header } from '../modules/header'
-import Footer from '../modules/footer'
+import { Header } from 'modules/header'
+import Footer from 'modules/footer'
 import Slider from './Slider'
 import styles from './Layout.module.scss'
-import theme from '../ui/styles/Theme.module.scss'
-import mobileTheme from '../ui/styles/MobileTheme.module.scss'
-import { getModeClassName } from '../ui/utils/get-theme-class-name'
-import { ConnectionModal, Web3ProviderRoot } from '../web3/Web3Provider'
+import theme from 'ui/styles/Theme.module.scss'
+import mobileTheme from 'ui/styles/MobileTheme.module.scss'
+import { getModeClassName } from 'ui/utils/get-theme-class-name'
 
 type LayoutType = {
   children?: ReactNode

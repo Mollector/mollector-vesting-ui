@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LogoMenu from '../assets/img/menu.png'
+import LogoMenu from 'assets/img/menu.png'
 import styles from './slider.module.scss'
 
 const Slider = () => {

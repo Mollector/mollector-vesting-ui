@@ -1,9 +1,9 @@
 import React from 'react'
 import { toast } from 'react-toastify'
+import { MetaIcon, RightArrow, WalletIcon } from 'modules/connect-wallet-pop-up/icons'
+import useAuth from 'hooks/useAuth'
+import { ConnectorNames } from 'utils/web3React'
 import BaseModal from '../BaseModal'
-import useAuth from '../../../hooks/useAuth'
-import { ConnectorNames } from '../../../utils/web3React'
-import { MetaIcon, RightArrow, WalletIcon } from '../../connect-wallet-pop-up/icons'
 import styles from './styles.module.scss'
 
 interface LoginModalProps {

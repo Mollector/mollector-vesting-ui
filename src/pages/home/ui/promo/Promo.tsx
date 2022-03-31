@@ -2,12 +2,12 @@ import { FC, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core'
 import styles from './Promo.module.scss'
-import { MaybeWithClassName } from '../../../../helper/react/types'
-import { GutterBox } from '../../../../ui/gutter-box'
-import { Heading1 } from '../../../../ui/typography'
-import { TextColor } from '../../../../ui/text-color'
-import { VESTING_CONTRACT_ADDRESS } from '../../../../const/const'
-import { Header } from '../../../../modules/header'
+import { MaybeWithClassName } from 'helper/react/types'
+import { GutterBox } from 'ui/gutter-box'
+import { Heading1 } from 'ui/typography'
+import { TextColor } from 'ui/text-color'
+import { VESTING_CONTRACT_ADDRESS } from 'const/const'
+import { Header } from 'modules/header'
 type PromoType = {}
 
 export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {

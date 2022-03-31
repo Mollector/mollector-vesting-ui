@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { MaybeWithClassName } from "../../helper/react/types";
+import { MaybeWithClassName } from "helper/react/types";
 
 export type VideoType = {
 	source: string;

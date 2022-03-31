@@ -1,15 +1,15 @@
 import classNames from "classnames";
 import type { CSSProperties, FC } from "react";
-import { MaybeWithClassName, WithChildren } from "../../helper/react/types";
+import { MaybeWithClassName, WithChildren } from "helper/react/types";
 
 import styles from "./Typography.module.scss";
 import colorStyles from "../styles/Color.module.scss";
 import sizeStyles from "../styles/Size.module.scss";
 import weightStyles from "../styles/Weight.module.scss";
-import { ColorType, FontSizeType, WeightType } from "../types";
-import { getColorClassName } from "../utils/get-color-class-name";
-import { getSizeClassName } from "../utils/get-size-class-name";
-import { getWeightClassName } from "../utils/get-weight-class-name";
+import { ColorType, FontSizeType, WeightType } from "ui/types";
+import { getSizeClassName } from "ui/utils/get-size-class-name";
+import { getWeightClassName } from "ui/utils/get-weight-class-name";
+import { getColorClassName } from "ui/utils/get-color-class-name";
 
 export type TypographyType = {
 	Component: Exclude<keyof JSX.IntrinsicElements, "button" | "a">;

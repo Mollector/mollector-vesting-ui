@@ -1,11 +1,10 @@
 import React, { CSSProperties, FC } from "react";
 import styles from "./Box.module.scss";
 import classNames from "classnames";
-
-import { MaybeWithClassName } from "../../helper/react/types";
-import PLANET1 from "./assets/planet1.png";
-import PLANET2 from "./assets/planet3.png";
-import { Image } from "../../ui/image";
+import PLANET1 from "assets/planet1.png";
+import PLANET2 from "assets/planet3.png";
+import { Image } from "ui/image";
+import { MaybeWithClassName } from "helper/react/types";
 
 type BoxType = {
 	size?: "md" | "lg";

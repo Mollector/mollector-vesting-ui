@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
-import { ConnectWalletPopUp } from "../modules/connect-wallet-pop-up";
-import { useControlPopUp } from "../ui/pop-up-container";
+import { ConnectWalletPopUp } from "modules/connect-wallet-pop-up";
+import { useControlPopUp } from "ui/pop-up-container";
 
 function getLibrary(provider: any) {
 	const library = new Web3Provider(provider);

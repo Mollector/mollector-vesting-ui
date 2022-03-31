@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import styles from './StakeItem.module.scss'
-import LpdiIcon from '../../assets/img/lpdi.png'
+import LpdiIcon from 'assets/img/lpdi.png'
 
 export const StakeItem = () => {
   return (

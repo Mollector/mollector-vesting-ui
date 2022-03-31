@@ -1,18 +1,18 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
 import classNames from "classnames";
 import styles from "./Airdrop.module.scss";
-import theme from "../../ui/styles/Theme.module.scss";
-import { GutterBox } from "../../ui/gutter-box";
-import { getModeClassName } from "../../ui/utils/get-theme-class-name";
+import theme from "ui/styles/Theme.module.scss";
+import { GutterBox } from "ui/gutter-box";
+import { getModeClassName } from "ui/utils/get-theme-class-name";
 import { useWeb3React } from "@web3-react/core";
-import { TX_SCANERS, NAME, VESTING_CONTRACT_ADDRESS } from "../../const/const";
-import { useWeb3Provider } from "../../web3/web3";
-import { useVestingContract } from "../../web3/contract";
+import { TX_SCANERS, NAME, VESTING_CONTRACT_ADDRESS } from "const/const";
+import { useWeb3Provider } from "web3/web3";
+import { useVestingContract } from "web3/contract";
 import { Contract } from "web3-eth-contract";
 import BN from "bn.js";
-import { Button, NavLink } from "../../ui/button";
-import { Box } from "../../modules/box";
-import { walletConversion } from "../../utils/convertWallet";
+import { Button, NavLink } from "ui/button";
+import { Box } from "modules/box";
+import { walletConversion } from "utils/convertWallet";
 import { useHistory } from "react-router-dom";
 
 

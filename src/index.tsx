@@ -1,17 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
+import reportWebVitals from 'reportWebVitals'
 import { ToastContainer } from 'react-toastify'
 import { Web3ReactProvider } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
-import ModalProvider from './modules/modal/ModalProvider'
-import './index.css'
-import './theme/globals.scss'
-import 'react-toastify/dist/ReactToastify.css'
-import './theme/variables.scss'
-import App from './App'
-import { RefreshContextProvider } from './context/RefreshContext'
-import reportWebVitals from './reportWebVitals'
+import { RefreshContextProvider } from 'context/RefreshContext'
+import ModalProvider from 'modules/modal/ModalProvider'
+import App from 'App'
 
 function getLibrary(provider: any) {
   const library = new Web3Provider(provider)

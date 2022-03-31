@@ -1,12 +1,12 @@
-import { RC } from "../../helper/react/types";
-import { ScatteredContinuousState } from "../../hooks/use-continuous-state";
-import { PopUpContainer } from "../../ui/pop-up-container";
+import { RC } from "helper/react/types";
+import { ScatteredContinuousState } from "hooks/use-continuous-state";
+import { PopUpContainer } from "ui/pop-up-container";
 import styles from "./ConnectWalletPopUp.module.scss";
 import { useState } from "react";
-import { hasMetaMask } from "../../helper/metamask";
+import { hasMetaMask } from "helper/metamask";
 import { MetaIcon, RightArrow, WalletIcon } from "./icons";
-import { useWalletConnector } from "../../web3/connections";
-import theme from "../../ui/styles/Theme.module.scss";
+import { useWalletConnector } from "web3/connections";
+import theme from "ui/styles/Theme.module.scss";
 
 export const ConnectWalletPopUp: RC<{
 	control: ScatteredContinuousState<boolean>;

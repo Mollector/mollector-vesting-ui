@@ -1,19 +1,19 @@
-import { Close, Logo } from "../icons/Icons";
-import { Button } from "../button";
-import { MaybeWithClassName, WithChildren } from "../../helper/react/types";
+import { MaybeWithClassName, WithChildren } from "helper/react/types";
 import classNames from "classnames";
 import type { CSSProperties, FC } from "react";
 import { useCallback, useState } from "react";
-import { Shadow } from "../shadow";
 
 import styles from "./PopUpContainer.module.scss";
 import { FocusOn } from "react-focus-on";
 import {
 	ScatteredContinuousState,
 	useScatteredContinuousState,
-} from "../../hooks/use-continuous-state";
-import { suppressEvent } from "../utils/suppress-event";
-import { useWindowSize } from "../../hooks/use-window-size";
+} from "hooks/use-continuous-state";
+import { useWindowSize } from "hooks/use-window-size";
+import { Button } from "ui/button";
+import { Shadow } from "ui/shadow";
+import { suppressEvent } from "ui/utils/suppress-event";
+import { Close } from "ui/icons/Icons";
 
 type PopUpContainerType = {
 	animated: boolean;

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core'
 import classNames from 'classnames'
 import styles from './Header.module.scss'
-import { MaybeWithClassName } from '../../helper/react/types'
-import LogoMenu from '../../assets/img/menu.png'
-import { LoginModal, useModal } from '../modal'
+import { MaybeWithClassName } from 'helper/react/types'
+import LogoMenu from 'assets/img/menu.png'
+import { LoginModal, useModal } from 'modules/modal'
 
 type HeaderType = {
   fixed?: boolean

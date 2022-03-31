@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { MaybeWithClassName } from "../../helper/react/types";
+import { MaybeWithClassName } from "helper/react/types";
 
 import { Source } from "./Source";
 import type { ImageDefinition } from "./types";

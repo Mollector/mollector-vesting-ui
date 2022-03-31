@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-
 import { Promo } from "./ui/promo";
 
 type HomeType = {};
