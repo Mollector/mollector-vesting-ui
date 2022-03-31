@@ -1,5 +1,5 @@
 import React, { FC, useState, ChangeEvent } from 'react'
-import { Input } from 'ui/input'
+import Input from '../Input'
 import styles from '../styles.module.scss'
 
 const StakeBox: FC = () => {
