@@ -26,6 +26,9 @@ const StakeBox: FC = () => {
       </div>
       <div className={styles.amountText}>~ 15000 MOL + 500 BUSD</div>
       <Input value={value} onChange={onHandleChange} />
+      <button className={styles.stakeButton}>
+          Stake
+        </button>
     </div>
   )
 }

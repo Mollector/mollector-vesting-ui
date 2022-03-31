@@ -23,3 +23,16 @@
     margin-right: 20px;
   }
 }
+
+.stakeButton {
+  width: calc(100% - 20px);
+  border: none;
+  height: 50px;
+  background: #FF9F43;
+  border-radius: 30px;
+  color: white;
+  font-size: 26px;
+  line-height: 35px;
+  font-weight: 450;
+  margin-top: 40px;
+}

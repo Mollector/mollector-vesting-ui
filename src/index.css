@@ -32,6 +32,11 @@ input[type=number] {
 .fade-enter {
   opacity: 0;
 }
+
+button {
+  font-family: GothamThin !important;
+}
+
 .fade-enter-active {
   opacity: 1;
   transition: opacity 200ms, transform 200ms;

@@ -17,8 +17,9 @@ const Input: FC<InputProps> = ({ value, onChange }) => {
       >
         <input className={cx(styles.input, { [styles.empty]: `${value}` })} value={value} onChange={onChange} />
         <div className={styles.inputInfo}>
+          <button className={styles.maxBtn}>Min</button>
           <div className={cx({ [styles.blur]: !value })}>{value || 0} LUA</div>
-          <span className={styles.maxBtn}>Max</span>
+          <button className={styles.maxBtn}>Max</button>
         </div>
       </div>
     </div>
