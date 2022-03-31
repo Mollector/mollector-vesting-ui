@@ -235,13 +235,13 @@ const Vesting: FC<TokensType> = () => {
     contract.methods.released(address).call(),
     contract.methods.unlocked(address).call(), */}
                     <div className={styles.text}>
-                      Your Total Lock: <span className={styles.amount}>{amount.totalShare + amount.lockedAmount - amount.released - amount.unlocked}</span> MOL
+                      Your Total Lock: <span className={styles.amount}>{parseFloat((amount.totalShare + amount.lockedAmount - amount.released - amount.unlocked).toFixed(4)).toLocaleString()}</span> MOL
                     </div>
                     <div className={styles.text}>
-                      Your Total Release : <span className={styles.amount}>{amount.released + amount.unlocked}</span> MOL
+                      Your Total Release : <span className={styles.amount}>{parseFloat((amount.released + amount.unlocked).toFixed(4)).toLocaleString()}</span> MOL
                     </div>
                     <div className={styles.text}>
-                      Your TGE Amount : <span className={styles.amount}>{amount.lockedAmount}</span> MOL
+                      Your TGE Amount : <span className={styles.amount}>{parseFloat(amount.lockedAmount.toFixed(4)).toLocaleString()}</span> MOL
                     </div>
                     <br/>
 
