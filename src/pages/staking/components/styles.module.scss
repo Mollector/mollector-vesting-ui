@@ -13,22 +13,6 @@
   font-weight: 400;
 }
 
-.amountTextBig {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 40px;
-  color: #97A3AE;
-}
-
-.titleGraph {
-  font-style: normal;
-  font-weight: 450;
-  font-size: 16px;
-  line-height: 22px;
-  color: #97A3AE;
-}
-
 .box {
   width: calc(50% - 20px);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
@@ -51,6 +35,22 @@
   line-height: 35px;
   font-weight: 450;
   margin-top: 40px;
+}
+
+.amountTextBig {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 40px;
+  color: #97A3AE;
+}
+
+.titleGraph {
+  font-style: normal;
+  font-weight: 450;
+  font-size: 16px;
+  line-height: 22px;
+  color: #97A3AE;
 }
 
 .wrappGraph {

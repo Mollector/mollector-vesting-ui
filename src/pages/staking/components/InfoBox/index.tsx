@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from '../styles.module.scss'
 import cx from 'classnames'
-import { BoxInfoModal, useModal } from 'modules/modal'
 import CornerIcon from './CornerIcon'
 
 const InfoBox = () => {
