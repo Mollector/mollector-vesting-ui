@@ -30,12 +30,12 @@ export const Layout: FC<LayoutType> = ({
 }) => {
   return (
     <div>
-      <Sidebar
+      {/* <Sidebar
         sidebar={<Slider />}
         sidebarClassName={styles.sidebar}
         docked
         styles={{ sidebar: { background: 'white' } }}
-      />
+      /> */}
       <div
         className={classNames(
           styles.component,

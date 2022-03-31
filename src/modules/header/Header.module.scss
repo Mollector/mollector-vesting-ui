@@ -38,7 +38,11 @@
 
   box-sizing: border-box;
 
-  background-color: #f8f8f8;
+  background-color: transparent;
+}
+
+.center {
+  justify-content: center;
 }
 
 .transparent {
