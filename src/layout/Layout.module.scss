@@ -2,13 +2,11 @@
 @use "helper/style/media";
 
 .component {
-  position: absolute;
-  inset: 0px 0px 0px 300px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   color: rgba(var(--text), 1);
-  background-color: #f8f8f8;
+  background: url('../assets/img/mainbackground.png'), #f8f8f8;
 }
 
 .light {

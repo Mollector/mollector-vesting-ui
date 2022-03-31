@@ -16,17 +16,13 @@ export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed, 
   const { account } = useWeb3React()
   const [onPresentLoginModal] = useModal(<LoginModal />)
   
-  if (account) {
-    return null
-  }
-
   return (
     <header className={classNames(styles.component, styles.fixed, className)}>
-      <div className={classNames(styles.wrapper, transparent && styles.transparent)}>
+      <div className={classNames(styles.wrapper, transparent && styles.transparent, account && styles.center)}>
         <Link to="/">
           <img className={styles.logo} src={LogoMenu} alt="logo" />
         </Link>
-        <button className={styles.connectStyle} onClick={onPresentLoginModal}>Connect to wallet</button>
+        {!account && <button className={styles.connectStyle} onClick={onPresentLoginModal}>Connect to wallet</button>}
       </div>
     </header>
   )
