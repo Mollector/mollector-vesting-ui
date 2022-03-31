@@ -19,6 +19,7 @@ import configuration from '../../configuration'
 import styles from './Vesting.module.scss'
 import theme from '../../ui/styles/Theme.module.scss'
 import { ReactComponent as CopySvg } from '../../assets/img/copy.svg'
+import useMediaQuery from '../../hooks/useMediaQuery'
 
 type TokensType = {}
 const fetchInformation = async (contract: Contract, address: string) => {
@@ -94,19 +95,19 @@ const Vesting: FC<TokensType> = () => {
   const { address: VESTING_CONTRACT_ADDRESS } = useParams()
   const contract = useVestingContract(provider, VESTING_CONTRACT_ADDRESS || '')
   const history = useNavigate()
-
+  const isMobile = useMediaQuery('(max-width: 576px)')
   const onCancel = () => {
     history('/')
   }
 
   const formatAddress = useCallback((address) => {
-    if (address) {
+    if (address && isMobile) {
       const addressArr = address.split('')
       return `${addressArr.slice(0, 7).join('')}...${addressArr.slice(-7).join('')}`
     }
 
-    return null
-  }, [])
+    return address
+  }, [isMobile])
 
   const updateData = useCallback(async () => {
     if (account) {
@@ -199,7 +200,7 @@ const Vesting: FC<TokensType> = () => {
                     </span>
                   </p>
 
-                  <div className={styles.text}>{account}</div>
+                  <div className={styles.text}>{formatAddress(account)}</div>
                   <div
                     style={{
                       display: 'flex',
@@ -234,7 +235,7 @@ const Vesting: FC<TokensType> = () => {
 
                     <p className={styles.text} style={{fontWeight: "bold"}}>
                       Token address: 
-                      <div>0x06597FFaFD82E66ECeD9209d539032571ABD50d9</div>
+                      <div>{formatAddress('0x06597FFaFD82E66ECeD9209d539032571ABD50d9')}</div>
                       <div style={{display: 'inline-flex', alignItems: 'center'}}>
                         <div onClick={onAddToken}>
                           <span className={styles.addBtn}>+</span>
