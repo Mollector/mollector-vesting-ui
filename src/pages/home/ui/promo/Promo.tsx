@@ -1,7 +1,6 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core'
-import classNames from 'classnames'
 import styles from './Promo.module.scss'
 import { MaybeWithClassName } from '../../../../helper/react/types'
 import { GutterBox } from '../../../../ui/gutter-box'
@@ -12,8 +11,12 @@ import { Header } from '../../../../modules/header'
 type PromoType = {}
 
 export const Promo: FC<PromoType & MaybeWithClassName> = ({ className }) => {
-  const { chainId } = useWeb3React()
+  const { chainId, account } = useWeb3React()
   const VESTING_CONTRACT_ADDRESSES = VESTING_CONTRACT_ADDRESS[Number(chainId) || 56]
+
+  const isLoggedIn = useMemo(() => {
+    return !!account
+  }, [account])
 
   return (
     <div className={styles.component}>

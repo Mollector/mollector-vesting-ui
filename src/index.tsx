@@ -4,6 +4,7 @@ import { HashRouter } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { Web3ReactProvider } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
+import ModalProvider from './modules/modal/ModalProvider'
 import './index.css'
 import './theme/globals.scss'
 import 'react-toastify/dist/ReactToastify.css'
@@ -20,11 +21,13 @@ function getLibrary(provider: any) {
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <HashRouter basename='/'>
       <Web3ReactProvider getLibrary={getLibrary}>
         <RefreshContextProvider>
-          <App />
-          <ToastContainer />
+          <ModalProvider>
+            <App />
+            <ToastContainer />
+          </ModalProvider>
         </RefreshContextProvider>
       </Web3ReactProvider>
     </HashRouter>

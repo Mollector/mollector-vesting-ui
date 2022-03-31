@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import styles from './Header.module.scss'
 import { MaybeWithClassName } from '../../helper/react/types'
 import LogoMenu from '../../assets/img/menu.png'
+import { LoginModal, useModal } from '../modal'
 
 type HeaderType = {
   fixed?: boolean
@@ -13,7 +14,7 @@ type HeaderType = {
 
 export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed, transparent }) => {
   const { account } = useWeb3React()
-
+  const [onPresentLoginModal] = useModal(<LoginModal />)
   if (account) {
     return null
   }
@@ -24,7 +25,7 @@ export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed, 
         <Link to="/">
           <img className={styles.logo} src={LogoMenu} alt="logo" />
         </Link>
-        <button className={styles.connectStyle}>Connect to wallet</button>
+        <button className={styles.connectStyle} onClick={onPresentLoginModal}>Connect to wallet</button>
       </div>
     </header>
   )
