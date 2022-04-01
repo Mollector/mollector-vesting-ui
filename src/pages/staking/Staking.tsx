@@ -34,54 +34,52 @@ const Staking: FC = () => {
 
   return (
     <Layout>
-      <div className={styles.row}>
-        <div className={styles.descriptionText}>
-          <GiftSvg className={styles.giftIcon} />
-          MOL is a multi-chain decentralized lottery and share all protocol fees with MOL holders!
-        </div>
-        <br />
-        <div className={styles.tabWrapper}>
-          <button
-            onClick={() => onChangeTab(1)}
-            className={cx(styles.sidebarOption, tabIndex === 1 && styles.active)}
-            style={{
-              marginRight: '20px',
-            }}
-          >
-            {STAKE_TOKEN[1].SYMBOL} Stake
-          </button>
-          <button onClick={() => onChangeTab(2)} className={cx(styles.sidebarOption, tabIndex === 2 && styles.active)}>
-          {STAKE_TOKEN[2].SYMBOL} Stake
-          </button>
-        </div>
-        <br />
-        <div className={styles.headerText}>Stake {tokenInfo.SYMBOL} Token</div>
-        <br />
-        <br />
-        <SwitchTransition mode="out-in">
-          <CSSTransition
-            key={tabIndex}
-            addEndListener={(node, done) => {
-              node.addEventListener('transitionend', done, false)
-            }}
-            classNames="fade"
-          >
-            <div className={styles.boxWrapper}>
-              {tabIndex === 1 ? (
-                <>
-                  <StakeBox tokenInfo={tokenInfo} />
-                  <InfoBox />
-                </>
-              ) : (
-                <>
-                  <StakeBox tokenInfo={tokenInfo} />
-                  <InfoBox />
-                </>
-              )}
-            </div>
-          </CSSTransition>
-        </SwitchTransition>
+      <div className={styles.descriptionText}>
+        <GiftSvg className={styles.giftIcon} />
+        MOL is a multi-chain decentralized lottery and share all protocol fees with MOL holders!
       </div>
+      <br />
+      <div className={styles.tabWrapper}>
+        <button
+          onClick={() => onChangeTab(1)}
+          className={cx(styles.sidebarOption, tabIndex === 1 && styles.active)}
+          style={{
+            marginRight: '20px',
+          }}
+        >
+          {STAKE_TOKEN[1].SYMBOL} Stake
+        </button>
+        <button onClick={() => onChangeTab(2)} className={cx(styles.sidebarOption, tabIndex === 2 && styles.active)}>
+          {STAKE_TOKEN[2].SYMBOL} Stake
+        </button>
+      </div>
+      <br />
+      <div className={styles.headerText}>Stake {tokenInfo.SYMBOL} Token</div>
+      <br />
+      <br />
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={tabIndex}
+          addEndListener={(node, done) => {
+            node.addEventListener('transitionend', done, false)
+          }}
+          classNames="fade"
+        >
+          <div className={styles.boxWrapper}>
+            {tabIndex === 1 ? (
+              <>
+                <StakeBox tokenInfo={tokenInfo} />
+                <InfoBox />
+              </>
+            ) : (
+              <>
+                <StakeBox tokenInfo={tokenInfo} />
+                <InfoBox />
+              </>
+            )}
+          </div>
+        </CSSTransition>
+      </SwitchTransition>
     </Layout>
   )
 }

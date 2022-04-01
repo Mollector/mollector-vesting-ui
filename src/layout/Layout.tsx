@@ -46,7 +46,7 @@ export const Layout: FC<LayoutType> = ({
       >
         <Header className={styles.header} fixed={fixedHeader} />
         <main className={styles.main}>
-          {children}
+          <div className={styles.row}>{children}</div>
         </main>
         {withDecoration && <div className={styles.decoration}></div>}
         <Footer />
