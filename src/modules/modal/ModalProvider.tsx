@@ -63,12 +63,14 @@ const ModalProvider: React.FC = ({ children }) => {
         onDismiss: handleClose,
       }}
     >
-      <div className={cx(styles.wrapper, styles.modalTransition, isOpen && styles.show)}>
-          <Overlay onClick={handleClose} />
+      <div className={cx(styles.wrapper)}>
+          {isOpen && <Overlay onClick={handleClose} />}
+          <div className={cx(styles.modalTransition, isOpen && styles.show)}>
           {React.isValidElement(modalElement) &&
             React.cloneElement(modalElement, {
               onDismiss: handleClose,
             })}
+          </div>
         </div>
 
       {children}
