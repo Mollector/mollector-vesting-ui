@@ -1,5 +1,6 @@
 import React, { createContext, ReactNode, useState, useEffect, HTMLAttributes, FC } from 'react'
 import { CSSTransition } from 'react-transition-group'
+import cx from 'classnames'
 import styles from './styles.module.scss'
 
 interface OverlayProps extends HTMLAttributes<HTMLDivElement> {}
@@ -62,15 +63,13 @@ const ModalProvider: React.FC = ({ children }) => {
         onDismiss: handleClose,
       }}
     >
-      {isOpen && (
-        <div className={styles.wrapper}>
+      <div className={cx(styles.wrapper, styles.modalTransition, isOpen && styles.show)}>
           <Overlay onClick={handleClose} />
           {React.isValidElement(modalElement) &&
             React.cloneElement(modalElement, {
               onDismiss: handleClose,
             })}
         </div>
-      )}
 
       {children}
     </ModalContext.Provider>
