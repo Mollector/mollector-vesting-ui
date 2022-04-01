@@ -48,14 +48,14 @@ const Staking: FC = () => {
               marginRight: '20px',
             }}
           >
-            LP Stake
+            {STAKE_TOKEN[1].SYMBOL} Stake
           </button>
           <button onClick={() => onChangeTab(2)} className={cx(styles.sidebarOption, tabIndex === 2 && styles.active)}>
-            MOL Stake
+          {STAKE_TOKEN[2].SYMBOL} Stake
           </button>
         </div>
         <br />
-        <div className={styles.headerText}>Stake Mol - BUSD LP Token</div>
+        <div className={styles.headerText}>Stake {tokenInfo.SYMBOL} Token</div>
         <br />
         <br />
         <SwitchTransition mode="out-in">

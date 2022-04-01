@@ -7,7 +7,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 
 type ADDRESS_TYPE = string | undefined | null
 
-const useTokenBalance = (tokenAddress: string, address: ADDRESS_TYPE) => {
+const useTokenBalance = (tokenAddress: string, address: ADDRESS_TYPE): [number, () => void] => {
   const provider = useWeb3Provider()
   const { slowRefresh } = useRefresh()
   const stakeToken1Contract = useBep20TokenContract(provider, tokenAddress)
