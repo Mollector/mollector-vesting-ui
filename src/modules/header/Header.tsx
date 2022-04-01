@@ -23,7 +23,7 @@ export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed, 
           <img className={styles.logo} src={LogoMenu} alt="logo" />
         </Link>
         {!account && <button className={styles.connectStyle} onClick={onPresentLoginModal}>Connect to wallet</button>}
-        {account && <button className={styles.account}>{account}</button>}
+        {account && <button className={styles.account}>Account: {account}</button>}
       </div>
     </header>
   )
