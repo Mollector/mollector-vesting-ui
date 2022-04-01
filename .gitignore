@@ -11,6 +11,9 @@
 # production
 /build
 
+/zdata
+vesting.js
+
 # misc
 .DS_Store
 .env.local

@@ -18,6 +18,8 @@ function getLibrary(provider: any) {
   return library
 }
 
+delete localStorage.walletconnect
+
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter basename='/'>

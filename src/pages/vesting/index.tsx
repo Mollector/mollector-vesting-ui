@@ -17,9 +17,10 @@ import { walletConversion } from 'utils/convertWallet'
 import { getBalanceAmount } from 'utils/formatBalance'
 import configuration from 'configuration'
 import styles from './Vesting.module.scss'
-import theme from 'ui/styles/Theme.module.scss'
-import { ReactComponent as CopySvg } from 'assets/img/copy.svg'
 import { Layout } from 'layout'
+import theme from '../../ui/styles/Theme.module.scss'
+import { ReactComponent as CopySvg } from '../../assets/img/copy.svg'
+import useMediaQuery from '../../hooks/useMediaQuery'
 
 type ParamsType = {
   address: string
@@ -34,10 +35,10 @@ const fetchInformation = async (contract: Contract, address: string) => {
     unlocked,
     tge,
     cliff,
-    duration,
-    vestingAmount,
-    totalReleased,
-    totalUnlocked,
+    duration
+    // vestingAmount,
+    // totalReleased,
+    // totalUnlocked,
   ] = await Promise.all([
     contract.methods.calculateReleaseAmount(address).call(),
     contract.methods.tgeUnlock(address).call(),
@@ -47,9 +48,9 @@ const fetchInformation = async (contract: Contract, address: string) => {
     contract.methods.TGE().call(),
     contract.methods.cliff().call(),
     contract.methods.duration().call(),
-    contract.methods.totalVestingAmount().call(),
-    contract.methods.totalReleased().call(),
-    contract.methods.totalUnlocked().call(),
+    // contract.methods.totalVestingAmount().call(),
+    // contract.methods.totalReleased().call(),
+    // contract.methods.totalUnlocked().call(),
   ])
 
   return {
@@ -61,8 +62,8 @@ const fetchInformation = async (contract: Contract, address: string) => {
     tge: new BN(tge.toString(), 10).toNumber() * 1000,
     cliff: new BN(cliff.toString(), 10).toNumber() * 1000,
     duration: new BN(duration.toString(), 10).toNumber() * 1000,
-    vestingAmount: getBalanceAmount(vestingAmount).toNumber(),
-    totalRelease: new BN(totalReleased).add(new BN(totalUnlocked)).toNumber(),
+    vestingAmount: 0,// getBalanceAmount(vestingAmount).toNumber(),
+    totalRelease: 0, //new BN(totalReleased).add(new BN(totalUnlocked)).toNumber(),
   }
 }
 
@@ -98,39 +99,40 @@ const Vesting: FC<TokensType> = () => {
   const { address: VESTING_CONTRACT_ADDRESS } = useParams<ParamsType>()
   const contract = useVestingContract(provider, VESTING_CONTRACT_ADDRESS || '')
   const history = useHistory()
-
+  const isMobile = useMediaQuery('(max-width: 576px)')
   const onCancel = () => {
     history.push('/')
   }
 
   const formatAddress = useCallback((address) => {
-    if (address) {
+    if (address && isMobile) {
       const addressArr = address.split('')
       return `${addressArr.slice(0, 7).join('')}...${addressArr.slice(-7).join('')}`
     }
 
-    return null
-  }, [])
+    return address
+  }, [isMobile])
 
   const updateData = useCallback(async () => {
     if (account) {
       const myAmount = await fetchInformation(contract, account)
-      if (myAmount.tge <= new Date().getTime()) {
-        setAmount(myAmount)
-      } else {
-        setAmount({
-          releaseAmount: 0,
-          lockedAmount: 0,
-          totalShare: 0,
-          released: 0,
-          unlocked: 0,
-          tge: myAmount.tge,
-          cliff: myAmount.cliff,
-          duration: myAmount.duration,
-          vestingAmount: myAmount.vestingAmount,
-          totalRelease: myAmount.totalRelease,
-        })
-      }
+      console.log(myAmount)
+      setAmount(myAmount)
+      // if (myAmount.tge <= new Date().getTime()) {
+      // } else {
+      //   setAmount({
+      //     releaseAmount: 0,
+      //     lockedAmount: 0,
+      //     totalShare: 0,
+      //     released: 0,
+      //     unlocked: 0,
+      //     tge: myAmount.tge,
+      //     cliff: myAmount.cliff,
+      //     duration: myAmount.duration,
+      //     vestingAmount: myAmount.vestingAmount,
+      //     totalRelease: myAmount.totalRelease,
+      //   })
+      // }
     }
   }, [contract, account])
 
@@ -196,17 +198,11 @@ const Vesting: FC<TokensType> = () => {
                     Available Amount:
                     <br />
                     <span>
-                      {parseFloat((amount.releaseAmount + amount.lockedAmount).toFixed(4)).toLocaleString()} {NAME}
+                      {amount.tge > new Date().getTime() ? 0 : parseFloat((amount.releaseAmount + amount.lockedAmount).toFixed(4)).toLocaleString()} {NAME}
                     </span>
                   </p>
 
-                  <div className={styles.text}>{walletConversion(account as any)}</div>
-                  <div className={styles.info}>
-                    Total locked amount: <span className={styles.amount}>{amount.vestingAmount}</span> MOL
-                  </div>
-                  <div className={styles.info}>
-                    Total release amount: <span className={styles.amount}>{amount.totalRelease}</span> MOL
-                  </div>
+                  <div className={styles.text}>{formatAddress(account)}</div>
                   <div
                     style={{
                       display: 'flex',
@@ -223,7 +219,7 @@ const Vesting: FC<TokensType> = () => {
                       size="large"
                       variant="contained"
                       onClick={claimAction}
-                      disabled={amount.releaseAmount + amount.lockedAmount == 0}
+                      disabled={amount.releaseAmount + amount.lockedAmount == 0 || amount.tge > new Date().getTime()}
                       style={{ width: '46%' }}
                     >
                       Claim
@@ -231,6 +227,50 @@ const Vesting: FC<TokensType> = () => {
                   </div>
                   <br />
                   <div style={{ fontFamily: 'monospace', textAlign: 'center' }}>
+                  {/* lockedAmount: new BN(lockedAmount.toString(), 10).div(new BN('1000000000000000000')).toNumber(),
+    totalShare: new BN(totalShare.toString(), 10).div(new BN('1000000000000000000')).toNumber(),
+    released: new BN(released.toString(), 10).div(new BN('1000000000000000000')).toNumber(),
+    unlocked: new BN(unlocked.toString(), 10).div(new BN('1000000000000000000')).toNumber(), */}
+
+{/* contract.methods.tgeUnlock(address).call(),
+    contract.methods.shares(address).call(),
+    contract.methods.released(address).call(),
+    contract.methods.unlocked(address).call(), */}
+                    <div className={styles.text}>
+                      Your Total Lock: <span className={styles.amount}>{parseFloat((amount.totalShare  - amount.released).toFixed(4)).toLocaleString()}</span> MOL
+                    </div>
+                    <div className={styles.text}>
+                      Your Total Release : <span className={styles.amount}>{parseFloat((amount.released + amount.unlocked).toFixed(4)).toLocaleString()}</span> MOL
+                    </div>
+                    <div className={styles.text}>
+                      Your TGE Amount : <span className={styles.amount}>{parseFloat(amount.lockedAmount.toFixed(4)).toLocaleString()}</span> MOL
+                    </div>
+                    <br/>
+
+                    <p className={styles.text} style={{fontWeight: "bold"}}>
+                      Token address: 
+                      <div>{formatAddress('0x06597FFaFD82E66ECeD9209d539032571ABD50d9')}</div>
+                      <div style={{display: 'inline-flex', alignItems: 'center'}}>
+                        <div onClick={onAddToken}>
+                          <span className={styles.addBtn}>+</span>
+                        </div>
+                        &nbsp;
+                        <div style={{display: 'flex', alignItems: 'center'}}>
+                          <CopyToClipboard
+                            text="0x06597FFaFD82E66ECeD9209d539032571ABD50d9"
+                            onCopy={() =>
+                              toast.success('Copied', {
+                                hideProgressBar: true,
+                              })
+                            }
+                          >
+                            <CopySvg className={styles.copyIcon} />
+                          </CopyToClipboard>
+                        </div>
+                      </div>
+                    </p>
+                    <br/>
+
                     <p className={styles.text}>
                       TGE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       {new Date(amount.tge).toLocaleDateString()} {new Date(amount.tge).toLocaleTimeString()}
@@ -242,25 +282,6 @@ const Vesting: FC<TokensType> = () => {
                     <p className={styles.text}>
                       Finish at:&nbsp;{new Date(amount.tge + amount.duration).toLocaleDateString()}{' '}
                       {new Date(amount.tge + amount.duration).toLocaleTimeString()}
-                    </p>
-                    <p className={styles.text}>
-                      Token address{' '}
-                      <span>
-                        <CopyToClipboard
-                          text="0x06597FFaFD82E66ECeD9209d539032571ABD50d9"
-                          onCopy={() =>
-                            toast.success('Copied', {
-                              hideProgressBar: true,
-                            })
-                          }
-                        >
-                          <CopySvg className={styles.copyIcon} />
-                        </CopyToClipboard>
-                      </span>{' '}
-                      : {formatAddress('0x06597FFaFD82E66ECeD9209d539032571ABD50d9')}{' '}
-                      <span onClick={onAddToken}>
-                        <span className={styles.addBtn}>+</span>
-                      </span>
                     </p>
                   </div>
                 </Box>
