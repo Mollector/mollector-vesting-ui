@@ -69,12 +69,12 @@ const Staking: FC = () => {
             {tabIndex === 1 ? (
               <>
                 <StakeBox tokenInfo={tokenInfo} />
-                <InfoBox />
+                <InfoBox tokenInfo={tokenInfo} />
               </>
             ) : (
               <>
                 <StakeBox tokenInfo={tokenInfo} />
-                <InfoBox />
+                <InfoBox tokenInfo={tokenInfo} />
               </>
             )}
           </div>
