@@ -1,11 +1,11 @@
 import React from 'react'
-import styles from '../styles.module.scss'
 import cx from 'classnames'
+import styles from '../styles.module.scss'
 import CornerIcon from './CornerIcon'
 
 const InfoBox = () => {
   return (
-    <div className={styles.box}>
+    <div className={cx(styles.box, styles.infoBoxContainer)}>
       <div className={styles.headerText}>TVL</div>
       <div className={styles.amountTextBig}>50,000,000 MOL + 500 BUSD</div>
       <div className={styles.titleGraph}>MOL</div>

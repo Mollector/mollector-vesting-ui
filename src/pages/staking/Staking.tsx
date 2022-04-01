@@ -1,17 +1,36 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useMemo, useState } from 'react'
+import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import cx from 'classnames'
 import { Layout } from 'layout'
 import StakeBox from './components/StakeBox'
 import InfoBox from './components/InfoBox'
 import styles from './staking.module.scss'
 import { ReactComponent as GiftSvg } from 'assets/img/gift.svg'
+import { STAKE_TOKEN_TYPE } from './types'
+
+const STAKE_TOKEN: STAKE_TOKEN_TYPE = {
+  1: {
+    ADDRESS: '0x7Df9AfB35C00a9A57c7BCfBc771e9dD97822e2c7',
+    SYMBOL: 'CBT',
+    NAME: 'CBT',
+  },
+  2: {
+    ADDRESS: '0x88E602C8DFC84B311b36d216F1342e8492B5F40d',
+    SYMBOL: 'BUSD',
+    NAME: 'BUSD',
+  },
+}
 
 const Staking: FC = () => {
-  const [tabIndex, setTabIndex] = useState<number>(1)
+  const [tabIndex, setTabIndex] = useState<1 | 2>(1)
 
-  const onChangeTab = (tIndex: number) => {
+  const onChangeTab = (tIndex: 1 | 2) => {
     setTabIndex(tIndex)
   }
+
+  const tokenInfo = useMemo(() => {
+    return STAKE_TOKEN[tabIndex]
+  }, [tabIndex])
 
   return (
     <Layout>
@@ -31,16 +50,37 @@ const Staking: FC = () => {
           >
             LP Stake
           </button>
-          <button onClick={() => onChangeTab(2)} className={cx(styles.sidebarOption, tabIndex === 2 && styles.active)}>MOL Stake</button>
+          <button onClick={() => onChangeTab(2)} className={cx(styles.sidebarOption, tabIndex === 2 && styles.active)}>
+            MOL Stake
+          </button>
         </div>
         <br />
         <div className={styles.headerText}>Stake Mol - BUSD LP Token</div>
         <br />
         <br />
-        <div className={styles.boxWrapper}>
-          <StakeBox />
-          <InfoBox />
-        </div>
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={tabIndex}
+            addEndListener={(node, done) => {
+              node.addEventListener('transitionend', done, false)
+            }}
+            classNames="fade"
+          >
+            <div className={styles.boxWrapper}>
+              {tabIndex === 1 ? (
+                <>
+                  <StakeBox tokenInfo={tokenInfo} />
+                  <InfoBox />
+                </>
+              ) : (
+                <>
+                  <StakeBox tokenInfo={tokenInfo} />
+                  <InfoBox />
+                </>
+              )}
+            </div>
+          </CSSTransition>
+        </SwitchTransition>
       </div>
     </Layout>
   )
