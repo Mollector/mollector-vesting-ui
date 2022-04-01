@@ -15,7 +15,7 @@ const CornerIcon = () => {
         setIsOpenInfo(false)
     }
     return <>
-        <input className={styles.cornerIcon} onFocus={onOpenInfo} onBlur={onCloseInfo} readOnly/>
+        <div className={styles.cornerIcon} onMouseOver={onOpenInfo} onMouseLeave={onCloseInfo}/>
         {
             isOpenInfo && <div className={styles.additionBoxInfo}>
                 <img className={styles.imgGift} src={GiftIcon} alt="" />
