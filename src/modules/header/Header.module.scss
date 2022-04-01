@@ -156,3 +156,20 @@
     cursor: pointer;
   }
 }
+
+.account {
+  color: #505d6f;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: transparent;
+  box-shadow: 0px 0px 3px #505d6f;
+  transition: .3s all ease-out;
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+}

@@ -1,9 +1,10 @@
-import React, { createContext, ReactNode, useState } from 'react'
+import React, { createContext, ReactNode, useState, useEffect, HTMLAttributes, FC } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import styles from './styles.module.scss'
 
+interface OverlayProps extends HTMLAttributes<HTMLDivElement> {}
 interface ModalsContext {
-  onPresent: (node: React.ReactNode, key?: string) => void;
+  onPresent: (node: React.ReactNode, key?: string) => void
   onDismiss: () => void
 }
 
@@ -11,6 +12,32 @@ export const ModalContext = createContext<ModalsContext>({
   onPresent: () => {},
   onDismiss: () => {},
 })
+
+const BodyLock = () => {
+  useEffect(() => {
+    document.body.style.cssText = `
+      overflow: hidden;
+    `;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.cssText = `
+        overflow: visible;
+        overflow: overlay;
+      `;
+    };
+  }, []);
+
+  return null;
+};
+
+const Overlay: FC<OverlayProps> = ({
+  onClick
+}) => {
+  return <div onClick={onClick}>
+    <BodyLock />
+    <div className={styles.overlay} />
+  </div>
+}
 
 const ModalProvider: React.FC = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -35,15 +62,16 @@ const ModalProvider: React.FC = ({ children }) => {
         onDismiss: handleClose,
       }}
     >
-      <CSSTransition in={isOpen} timeout={300} unmountOnExit classNames="fade">
+      {isOpen && (
         <div className={styles.wrapper}>
-          <div className={styles.overlay} onClick={handleClose} />
+          <Overlay onClick={handleClose} />
           {React.isValidElement(modalElement) &&
             React.cloneElement(modalElement, {
               onDismiss: handleClose,
             })}
         </div>
-      </CSSTransition>
+      )}
+
       {children}
     </ModalContext.Provider>
   )

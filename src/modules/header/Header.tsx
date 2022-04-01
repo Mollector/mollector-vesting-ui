@@ -18,11 +18,12 @@ export const Header: FC<HeaderType & MaybeWithClassName> = ({ className, fixed, 
   
   return (
     <header className={classNames(styles.component, styles.fixed, className)}>
-      <div className={classNames(styles.wrapper, transparent && styles.transparent, account && styles.center)}>
+      <div className={classNames(styles.wrapper, transparent && styles.transparent)}>
         <Link to="/">
           <img className={styles.logo} src={LogoMenu} alt="logo" />
         </Link>
         {!account && <button className={styles.connectStyle} onClick={onPresentLoginModal}>Connect to wallet</button>}
+        {account && <button className={styles.account}>{account}</button>}
       </div>
     </header>
   )
