@@ -49,7 +49,7 @@ export const Layout: FC<LayoutType> = ({
           <div className={styles.row}>{children}</div>
         </main>
         {withDecoration && <div className={styles.decoration}></div>}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   )

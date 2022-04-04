@@ -9,7 +9,8 @@ import styles from '../styles.module.scss'
 import CornerIcon from './CornerIcon'
 import { mapStakingHistoryData } from 'pages/staking/utils/mapHistoryData'
 import { FilteredStakingData } from 'pages/staking/types'
-
+import useTokenBalance from 'hooks/useTokenBalance'
+import MolChest from '../../../../assets/img/mol-chest.png'
 interface InfoBoxProps {
   tokenInfo: {
     ADDRESS: string
@@ -24,6 +25,7 @@ const InfoBox: FC<InfoBoxProps> = ({
   const { chainId = 56, account } = useWeb3React()
   const [depositHistory, setDepositHistory] = useState<FilteredStakingData[]>([])
   const provider = useWeb3Provider()
+  const [tokenBalance] = useTokenBalance(tokenInfo.ADDRESS, STAKING_CONTRACT_ADDRESS[chainId])
   const stakingContract = useStakingContract(provider, STAKING_CONTRACT_ADDRESS[chainId])
 
   useEffect(() => {
@@ -45,9 +47,12 @@ const InfoBox: FC<InfoBoxProps> = ({
   console.log(depositHistory, 'history ?')
   return (
     <div className={cx(styles.box, styles.infoBoxContainer)}>
-      <div className={styles.headerText}>TVL</div>
-      <div className={styles.amountTextBig}>50,000,000 MOL + 500 BUSD</div>
-      <div className={styles.titleGraph}>MOL</div>
+      <div className={styles.headerText}>Total Value Lock: {tokenBalance} MOL</div>
+      <br />
+      <br />
+      <img src={MolChest} style={{width: '100%'}}/>
+      {/* <div className={styles.amountTextBig}></div> */}
+      {/* <div className={styles.titleGraph}>MOL</div>
       <div className={styles.wrappGraph}>
         <div className={styles.graph}>
           <div className={styles.graphCol}>
@@ -102,7 +107,7 @@ const InfoBox: FC<InfoBoxProps> = ({
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

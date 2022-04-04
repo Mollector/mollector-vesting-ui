@@ -39,14 +39,75 @@
   }
 }
 
+.claimReward {
+  width: 100%;
+  border: 2px solid #ff8900;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 30px;
+  color: #ff8900;
+  font-size: 16px;
+  line-height: 35px;
+  font-weight: 450;
+  margin-top: 20px;
+  transition: all .3s ease-out;
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    background-color: #97A3AE;
+  }
+  
+  &:hover:disabled {
+    cursor: not-allowed;
+  }
+}
+
+
 .stakeButton {
+  margin: 10px;
   width: 100%;
   border: none;
   height: 50px;
-  background: #FF9F43;
+  background: #00af22;
   border-radius: 30px;
   color: white;
-  font-size: 26px;
+  font-size: 16px;
+  line-height: 35px;
+  font-weight: 450;
+  margin-top: 20px;
+  transition: all .3s ease-out;
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    background-color: #97A3AE;
+  }
+  
+  &:hover:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.withdraw2Button {
+  margin: 10px;
+  width: 100%;
+  border: 1px solid #fa5555;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 30px;
+  color: #fa5555;
+  font-size: 16px;
   line-height: 35px;
   font-weight: 450;
   margin-top: 20px;

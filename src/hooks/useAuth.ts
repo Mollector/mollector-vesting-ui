@@ -24,7 +24,7 @@ const useAuth = () => {
     // This localStorage key is set by @web3-react/walletconnect-connector
     if (window.localStorage.getItem('walletconnect')) {
       connectorsByName.walletconnect.close()
-      connectorsByName.walletconnect.walletConnectProvider = null
+      connectorsByName.walletconnect.walletConnectProvider = undefined
     }
   }, [deactivate])
 
@@ -62,7 +62,7 @@ const useAuth = () => {
           ) {
             if (connector instanceof WalletConnectConnector) {
               const walletConnector = connector
-              walletConnector.walletConnectProvider = null
+              walletConnector.walletConnectProvider = undefined
             }
             toast.error('Please authorize to access your account', {
               hideProgressBar: true,

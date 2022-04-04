@@ -10,9 +10,9 @@ import { STAKE_TOKEN_TYPE } from './types'
 
 const STAKE_TOKEN: STAKE_TOKEN_TYPE = {
   1: {
-    ADDRESS: '0x7Df9AfB35C00a9A57c7BCfBc771e9dD97822e2c7',
-    SYMBOL: 'CBT',
-    NAME: 'CBT',
+    ADDRESS: '0x256c8aF0Aa0F2c94C2204294aE5656e263fA6643',
+    SYMBOL: 'MOL',
+    NAME: 'MOL',
   },
   2: {
     ADDRESS: '0x88E602C8DFC84B311b36d216F1342e8492B5F40d',
@@ -34,13 +34,13 @@ const Staking: FC = () => {
 
   return (
     <Layout>
-      <div className={styles.descriptionText}>
+      {/* <div className={styles.descriptionText}>
         <GiftSvg className={styles.giftIcon} />
         MOL is a multi-chain decentralized lottery and share all protocol fees with MOL holders!
-      </div>
-      <br />
+      </div> */}
+      {/* <br /> */}
       <div className={styles.tabWrapper}>
-        <button
+        {/* <button
           onClick={() => onChangeTab(1)}
           className={cx(styles.sidebarOption, tabIndex === 1 && styles.active)}
           style={{
@@ -48,14 +48,14 @@ const Staking: FC = () => {
           }}
         >
           {STAKE_TOKEN[1].SYMBOL} Stake
-        </button>
-        <button onClick={() => onChangeTab(2)} className={cx(styles.sidebarOption, tabIndex === 2 && styles.active)}>
+        </button> */}
+        {/* <button onClick={() => onChangeTab(2)} className={cx(styles.sidebarOption, tabIndex === 2 && styles.active)}>
           {STAKE_TOKEN[2].SYMBOL} Stake
-        </button>
+        </button> */}
       </div>
-      <br />
+      {/* <br />
       <div className={styles.headerText}>Stake {tokenInfo.SYMBOL} Token</div>
-      <br />
+      <br /> */}
       <br />
       <SwitchTransition mode="out-in">
         <CSSTransition

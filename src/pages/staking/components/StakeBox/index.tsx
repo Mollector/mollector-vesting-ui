@@ -14,7 +14,7 @@ import useApprove from 'hooks/useApprove'
 import { STAKING_CONTRACT_ADDRESS } from 'const/const'
 import styles from '../styles.module.scss'
 import { getDecimalAmount } from 'utils/formatBalance'
-
+import royalchest from '../../../../assets/img/royal-chest.png'
 interface StakeBoxProps {
   tokenInfo: {
     ADDRESS: string
@@ -113,7 +113,7 @@ const StakeBox: FC<StakeBoxProps> = ({ tokenInfo }) => {
   }
 
   const onHandleChangeToMin = () => {
-    setValue('1')
+    setValue('200')
   }
 
   const onHandleChangeToMax = () => {
@@ -128,27 +128,28 @@ const StakeBox: FC<StakeBoxProps> = ({ tokenInfo }) => {
   const buttonText = useMemo(() => {
     if (isStaking) return <LoadingComponent />
 
-    if (!value) return 'Enter Amount'
+    // if (!value) return 'Enter Amount'
 
-    if (isSufficient) return <>Staking</>
+    return 'Staking'
 
-    if (!isSufficient) return <>Insufficient {SYMBOL} balance</>
+    // if (!isSufficient) return <>Insufficient {SYMBOL} balance</>
   }, [isSufficient, value, isStaking, SYMBOL])
 
   return (
     <div className={cx(styles.container, styles.stakeBoxContainer, styles.box)}>
       <div>
-        <div className={styles.headerText}>Your Stake</div>
-        <div
-          className={styles.headerText}
-          style={{
-            color: '#14b5b1',
-            margin: '10px 0px',
-          }}
-        >
-          {tokenStakedValue} {SYMBOL}
+        <div className={styles.headerText}>
+            Your Stake <span
+            className={styles.headerText}
+            style={{
+              color: '#14b5b1',
+              margin: '10px 0px',
+            }}
+          >
+            {tokenStakedValue.toLocaleString()} {SYMBOL}
+          </span>
         </div>
-        <div className={styles.amountText}>~ 15000 MOL + 500 BUSD</div>
+        <div className={styles.amountText}>Your Mol: {tokenBalance.toLocaleString()} MOl</div>
         <Input
           value={value}
           isDisableMinMax={isDisableMinMax}
@@ -156,32 +157,34 @@ const StakeBox: FC<StakeBoxProps> = ({ tokenInfo }) => {
           onHandleChangeToMin={onHandleChangeToMin}
           onHandleChangeToMax={onHandleChangeToMax}
         />
-        {isTokenApproved ? (
-          <button className={styles.stakeButton} onClick={() => onHandleStake()} disabled={!value || !isSufficient}>
-            {buttonText}
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <button className={styles.withdraw2Button} style={{width: '40%'}} onClick={() => onHandleWithdraw()}>
+            Withdraw All
           </button>
-        ) : (
-          <button className={styles.stakeButton} onClick={() => onHandleApproveToken()}>
-            {isLoadingOnApproveToken || isLoadingTokenApproved ? <LoadingComponent /> : <>Approve</>}
+          <div style={{width: '40%'}}>
+            {isTokenApproved ? (
+              <button className={styles.stakeButton} onClick={() => onHandleStake()}>
+                {buttonText}
+              </button>
+            ) : (
+              <button className={styles.stakeButton} onClick={() => onHandleApproveToken()}>
+                {isLoadingOnApproveToken || isLoadingTokenApproved ? <LoadingComponent /> : <>Approve</>}
+              </button>
+            )}
+          </div>
+        </div>
+        <div className={styles.infoWrapper} style={{textAlign: 'center'}}>
+          <br/>
+          <span style={{color: '#505d6e'}}>Your Reward</span>
+          <br/>
+          <br/>
+          <div style={{position: 'relative'}}>
+            <img src={royalchest} style={{width: '50%'}}/>
+          </div>
+          <button className={styles.claimReward} style={{width: '40%'}}>
+            30d : 20h : 30m : 20s
           </button>
-        )}
-
-        <div className={styles.withdrawButton} onClick={() => onHandleWithdraw()}>
-          Withdraw All
         </div>
-        <div className={styles.infoWrapper}>
-          <div className={styles.infoHeader}>Info</div>
-          <ul>
-            <li>Min: 50 LP in 1 week</li>
-            <li>Reward: 1 pack</li>
-          </ul>
-        </div>
-      </div>
-      <div className={styles.boxFooter}>
-        Don't have enough MOL.{' '}
-        <a href="/" rel="noopener" target="_blank">
-          Buy more
-        </a>
       </div>
     </div>
   )
