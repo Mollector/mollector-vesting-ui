@@ -6,6 +6,8 @@
 // 0x2a2aa5fd2e781b8eF3a06147b250a6103B0aE849: ADVISOR
 // 0x5AF5f337a2c695B27C2ED5B9F26eBfF68c2Ef836: PRIVATE
 
+// https://bscscan.com/tx/0x4e9521c2e498f66c6e75a17f2594fa9e1a90d3f4bbf2b01ffcd8e3735554c056
+
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
